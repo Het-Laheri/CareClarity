@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import Image from "next/image";
-import { notFound, useParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { placeHolderImages } from "@/lib/placeholder-images";
 import { doctors } from "@/lib/doctors";
 import { Badge } from "@/components/ui/badge";
@@ -116,16 +117,17 @@ export default function DoctorProfilePage() {
                     <CardTitle className="font-headline text-2xl">Book an Appointment</CardTitle>
                     <CardDescription>Select an available day to see time slots.</CardDescription>
                 </CardHeader>
-                <CardContent className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-                    <Calendar
-                        mode="single"
-                        selected={date}
-                        onSelect={setDate}
-                        className="rounded-md border mx-auto lg:mx-0"
-                        disabled={(date) => date < new Date(new Date().setDate(new Date().getDate() - 1))}
-                    />
-
-                    <div className="space-y-4">
+                <CardContent className="flex flex-col lg:flex-row gap-8">
+                    <div className="w-full lg:w-auto">
+                        <Calendar
+                            mode="single"
+                            selected={date}
+                            onSelect={setDate}
+                            className="rounded-md border"
+                            disabled={(date) => date < new Date(new Date().setDate(new Date().getDate() - 1))}
+                        />
+                    </div>
+                    <div className="space-y-4 flex-1">
                         <h3 className="font-semibold text-lg flex items-center gap-2">
                             <Clock className="h-5 w-5"/>
                             <span>Available Times</span>
