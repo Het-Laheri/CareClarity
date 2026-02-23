@@ -121,7 +121,7 @@ export default function DoctorProfilePage() {
                         mode="single"
                         selected={date}
                         onSelect={setDate}
-                        className="rounded-md border"
+                        className="rounded-md border mx-auto lg:mx-0"
                         disabled={(date) => date < new Date(new Date().setDate(new Date().getDate() - 1))}
                     />
 
