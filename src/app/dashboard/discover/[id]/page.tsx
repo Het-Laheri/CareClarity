@@ -26,7 +26,7 @@ export default function DoctorProfilePage() {
   const doctor = doctors.find((d) => d.id === params.id);
   const image = placeHolderImages.find((p) => p.id === doctor?.imageId);
   
-  const [date, setDate] = useState<Date | undefined>(new Date());
+  const [date, setDate] = useState<Date | undefined>();
   const [selectedTime, setSelectedTime] = useState<string | undefined>();
   const [bookedSlots, setBookedSlots] = useState<string[]>([]);
 
@@ -114,10 +114,10 @@ export default function DoctorProfilePage() {
             <Card>
                 <CardHeader>
                     <CardTitle className="font-headline text-2xl">Book an Appointment</CardTitle>
-                    <CardDescription>Select a date and time that works for you.</CardDescription>
+                    <CardDescription>Select an available day to see time slots.</CardDescription>
                 </CardHeader>
-                <CardContent className="flex flex-col lg:flex-row gap-8">
-                   <div className="flex-shrink-0 mx-auto">
+                <CardContent className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                   <div className="flex justify-center">
                      <Calendar
                         mode="single"
                         selected={date}
@@ -127,16 +127,19 @@ export default function DoctorProfilePage() {
                     />
                    </div>
 
-                    <div className="flex-1 space-y-4">
-                        <h3 className="font-semibold text-lg flex items-center gap-2"><Clock className="h-5 w-5"/> Available Times for {date ? date.toLocaleDateString() : 'selected date'}</h3>
+                    <div className="space-y-4">
+                        <h3 className="font-semibold text-lg flex items-center gap-2">
+                            <Clock className="h-5 w-5"/>
+                            <span>Available Times</span>
+                        </h3>
                         {date ? (
-                             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                                 {timeSlots.map(time => (
                                     <Button 
                                         key={time} 
                                         variant="outline"
                                         disabled={bookedSlots.includes(time)}
-                                        className={cn(selectedTime === time && "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground")}
+                                        className={cn("justify-center", selectedTime === time && "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground")}
                                         onClick={() => setSelectedTime(time)}
                                     >
                                         {time}
@@ -144,7 +147,9 @@ export default function DoctorProfilePage() {
                                 ))}
                             </div>
                         ) : (
-                            <p className="text-muted-foreground">Please select a date first.</p>
+                            <div className="flex items-center justify-center text-center h-full rounded-md bg-muted/50 p-8">
+                                <p className="text-muted-foreground">Please select a date to see available times.</p>
+                            </div>
                         )}
                     </div>
                 </CardContent>
