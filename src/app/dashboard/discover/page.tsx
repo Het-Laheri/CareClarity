@@ -1,19 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 import { placeHolderImages } from "@/lib/placeholder-images";
+import { doctors } from "@/lib/doctors";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Search, Video } from "lucide-react";
-
-const doctors = [
-  { id: 'doc1', name: 'Dr. Emily Carter', specialization: 'Pediatric Neurology', location: 'New York, NY', online: true, imageId: 'doctor-1' },
-  { id: 'doc2', name: 'Dr. Ben Hanson', specialization: 'Developmental-Behavioral Pediatrics', location: 'Chicago, IL', online: false, imageId: 'doctor-2' },
-  { id: 'doc3', name: 'Dr. Olivia Chen', specialization: 'Child Psychiatry', location: 'San Francisco, CA', online: true, imageId: 'doctor-3' },
-  { id: 'doc4', name: 'Dr. Aisha Khan', specialization: 'Occupational Therapy', location: 'Miami, FL', online: true, imageId: 'doctor-4' },
-  { id: 'doc5', name: 'Dr. David Lee', specialization: 'Speech-Language Pathology', location: 'Austin, TX', online: false, imageId: 'doctor-5' },
-  { id: 'doc6', name: 'Dr. Sophia Rodriguez', specialization: 'Applied Behavior Analysis (ABA)', location: 'Los Angeles, CA', online: true, imageId: 'doctor-6' },
-];
 
 export default function DiscoverPage() {
   return (
@@ -73,7 +66,9 @@ export default function DiscoverPage() {
                     </Badge>
                   )}
                 </div>
-                 <Button className="mt-4 w-full">View Profile</Button>
+                 <Button className="mt-4 w-full" asChild>
+                    <Link href={`/dashboard/discover/${doctor.id}`}>View Profile</Link>
+                 </Button>
               </CardContent>
             </Card>
           );
