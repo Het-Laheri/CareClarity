@@ -117,15 +117,13 @@ export default function DoctorProfilePage() {
                     <CardDescription>Select an available day to see time slots.</CardDescription>
                 </CardHeader>
                 <CardContent className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-                   <div className="flex justify-center">
-                     <Calendar
+                    <Calendar
                         mode="single"
                         selected={date}
                         onSelect={setDate}
                         className="rounded-md border"
                         disabled={(date) => date < new Date(new Date().setDate(new Date().getDate() - 1))}
                     />
-                   </div>
 
                     <div className="space-y-4">
                         <h3 className="font-semibold text-lg flex items-center gap-2">
