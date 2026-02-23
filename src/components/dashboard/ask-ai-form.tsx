@@ -1,6 +1,7 @@
 'use client';
 
-import { useFormState, useFormStatus } from 'react-dom';
+import { useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 import { getAIResponse, getActivityIdeas, type AIResponseState, type ActivityIdeasState } from '@/app/dashboard/actions';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -23,7 +24,7 @@ function SubmitButton({ children }: { children: React.ReactNode }) {
 
 function AskQuestionForm() {
   const initialState: AIResponseState = { form: { query: '' } };
-  const [state, formAction] = useFormState(getAIResponse, initialState);
+  const [state, formAction] = useActionState(getAIResponse, initialState);
 
   return (
     <div className="space-y-6">
@@ -80,7 +81,7 @@ function AskQuestionForm() {
 
 function GenerateIdeasForm() {
     const initialState: ActivityIdeasState = { form: { keywords: '' } };
-    const [state, formAction] = useFormState(getActivityIdeas, initialState);
+    const [state, formAction] = useActionState(getActivityIdeas, initialState);
 
     return (
         <div className="space-y-6">
