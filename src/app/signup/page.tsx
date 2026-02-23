@@ -32,7 +32,7 @@ export default function SignupPage() {
                 <Input id="password" type="password" required />
               </div>
               <Button type="submit" className="w-full" asChild>
-                <Link href="/dashboard">Create Account</Link>
+                <Link href="/onboarding">Create Account</Link>
               </Button>
             </form>
             <div className="mt-4 text-center text-sm">
