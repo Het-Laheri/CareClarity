@@ -67,12 +67,13 @@ export function BookingDialog({ isOpen, onOpenChange, doctorName }: BookingDialo
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[650px] p-0">
-        <div className="flex flex-col md:flex-row">
+      <DialogContent className="max-w-3xl p-0">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          {/* Calendar Section */}
           <div className="p-6">
-            <DialogHeader className="mb-4">
+             <DialogHeader className="mb-4">
               <DialogTitle className="font-headline text-xl">Book with {doctorName}</DialogTitle>
-              <DialogDescription>Select a date and time.</DialogDescription>
+              <DialogDescription>Select an available date and time.</DialogDescription>
             </DialogHeader>
             <div className="flex justify-center">
               <Calendar
@@ -88,12 +89,14 @@ export function BookingDialog({ isOpen, onOpenChange, doctorName }: BookingDialo
               />
             </div>
           </div>
-          <div className="flex-1 bg-secondary/50 p-6 border-l">
-            <h3 className="font-semibold mb-4 text-center text-sm text-foreground">
-              {date ? format(date, 'eeee, MMMM d') : 'Select a date'}
+
+          {/* Time Slots Section */}
+          <div className="border-t md:border-t-0 md:border-l bg-secondary/50 p-6">
+            <h3 className="font-semibold mb-4 text-sm text-foreground">
+              {date ? `Available slots for ${format(date, 'eeee, MMMM d')}` : 'Please select a date'}
             </h3>
-            {date && (
-               <div className="grid grid-cols-2 gap-2 max-h-80 overflow-y-auto pr-2">
+            {date ? (
+               <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 max-h-[280px] md:max-h-[350px] overflow-y-auto pr-2">
                 {timeSlots.map(slot => {
                   const isBooked = todaysBookedSlots.includes(slot);
                   return (
@@ -104,7 +107,7 @@ export function BookingDialog({ isOpen, onOpenChange, doctorName }: BookingDialo
                       disabled={isBooked}
                       onClick={() => setSelectedTime(slot)}
                       className={cn(
-                        "w-full",
+                        "w-full justify-center",
                         isBooked && "bg-muted-foreground/30 text-muted-foreground line-through"
                       )}
                     >
@@ -113,12 +116,16 @@ export function BookingDialog({ isOpen, onOpenChange, doctorName }: BookingDialo
                   );
                 })}
               </div>
+            ) : (
+                <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
+                    Select a date to see available times.
+                </div>
             )}
           </div>
         </div>
-        <DialogFooter className="p-6 bg-secondary/20 border-t">
+        <DialogFooter className="p-6 border-t">
           <Button variant="ghost" onClick={() => onOpenChange(false)}>Cancel</Button>
-          <Button variant="dark" onClick={handleBooking}>Confirm Booking</Button>
+          <Button onClick={handleBooking} disabled={!date || !selectedTime}>Confirm Booking</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
