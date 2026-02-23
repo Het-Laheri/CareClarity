@@ -8,18 +8,9 @@ import { placeHolderImages } from "@/lib/placeholder-images";
 import { doctors } from "@/lib/doctors";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import { CheckCircle, Clock, Video, MapPin, Stethoscope } from "lucide-react";
-import { cn } from '@/lib/utils';
+import { CheckCircle, Video, MapPin, Stethoscope } from "lucide-react";
 import { useToast } from '@/hooks/use-toast';
-
-// Expanded time slots
-const timeSlots = [
-  "08:00 AM", "08:30 AM", "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", 
-  "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM",
-  "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM"
-];
 
 export default function DoctorProfilePage() {
   const { toast } = useToast();
@@ -28,32 +19,9 @@ export default function DoctorProfilePage() {
   const image = placeHolderImages.find((p) => p.id === doctor?.imageId);
   
   const [date, setDate] = useState<Date | undefined>();
-  const [selectedTime, setSelectedTime] = useState<string | undefined>();
-  const [bookedSlots, setBookedSlots] = useState<string[]>([]);
 
   if (!doctor) {
     notFound();
-  }
-
-  const handleBooking = () => {
-    if (!date || !selectedTime) {
-        toast({
-            variant: "destructive",
-            title: "Booking Failed",
-            description: "Please select a date and time to book an appointment.",
-        });
-        return;
-    }
-
-    // Add to booked slots and reset selection
-    setBookedSlots([...bookedSlots, selectedTime]);
-
-    toast({
-        title: "Appointment Booked!",
-        description: `Your appointment with ${doctor.name} on ${date.toLocaleDateString()} at ${selectedTime} has been successfully booked.`,
-    });
-
-    setSelectedTime(undefined);
   }
 
   return (
@@ -115,54 +83,17 @@ export default function DoctorProfilePage() {
             <Card>
                 <CardHeader>
                     <CardTitle className="font-headline text-2xl">Book an Appointment</CardTitle>
-                    <CardDescription>Select an available day to see time slots.</CardDescription>
+                    <CardDescription>Select a date to get started.</CardDescription>
                 </CardHeader>
-                <CardContent className="flex flex-col lg:flex-row gap-8">
-                    <div className="w-full lg:w-auto">
-                        <Calendar
-                            mode="single"
-                            selected={date}
-                            onSelect={setDate}
-                            className="rounded-md border"
-                            disabled={(date) => date < new Date(new Date().setDate(new Date().getDate() - 1))}
-                        />
-                    </div>
-                    <div className="space-y-4 flex-1">
-                        <h3 className="font-semibold text-lg flex items-center gap-2">
-                            <Clock className="h-5 w-5"/>
-                            <span>Available Times</span>
-                        </h3>
-                        {date ? (
-                             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                                {timeSlots.map(time => (
-                                    <Button 
-                                        key={time} 
-                                        variant="outline"
-                                        disabled={bookedSlots.includes(time)}
-                                        className={cn("justify-center", selectedTime === time && "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground")}
-                                        onClick={() => setSelectedTime(time)}
-                                    >
-                                        {time}
-                                    </Button>
-                                ))}
-                            </div>
-                        ) : (
-                            <div className="flex items-center justify-center text-center h-full rounded-md bg-muted/50 p-8">
-                                <p className="text-muted-foreground">Please select a date to see available times.</p>
-                            </div>
-                        )}
-                    </div>
+                <CardContent className="flex justify-center p-6">
+                    <Calendar
+                        mode="single"
+                        selected={date}
+                        onSelect={setDate}
+                        className="rounded-md border"
+                        disabled={(date) => date < new Date(new Date().setDate(new Date().getDate() - 1))}
+                    />
                 </CardContent>
-                <div className="p-6 pt-0">
-                     <Button 
-                        size="lg" 
-                        className="w-full" 
-                        onClick={handleBooking}
-                        disabled={!date || !selectedTime}
-                    >
-                        {selectedTime ? `Book Appointment for ${selectedTime}`: 'Select a Time'}
-                    </Button>
-                </div>
             </Card>
         </div>
       </div>
