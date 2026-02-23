@@ -116,7 +116,7 @@ export default function DoctorProfilePage() {
                     <CardTitle className="font-headline text-2xl">Book an Appointment</CardTitle>
                     <CardDescription>Select an available day to see time slots.</CardDescription>
                 </CardHeader>
-                <CardContent className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <CardContent className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
                    <div className="flex justify-center">
                      <Calendar
                         mode="single"
