@@ -17,7 +17,7 @@ const doctors = [
 
 export default function DiscoverPage() {
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 p-4 md:p-6">
       <div>
         <h1 className="font-headline text-3xl font-bold tracking-tight">
           Discover Doctors
