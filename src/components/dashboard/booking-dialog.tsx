@@ -67,63 +67,58 @@ export function BookingDialog({ isOpen, onOpenChange, doctorName }: BookingDialo
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-3xl p-0">
-        <div className="grid grid-cols-1 md:grid-cols-2">
-          {/* Calendar Section */}
-          <div className="p-6">
-             <DialogHeader className="mb-4">
-              <DialogTitle className="font-headline text-xl">Book with {doctorName}</DialogTitle>
-              <DialogDescription>Select an available date and time.</DialogDescription>
-            </DialogHeader>
-            <div className="flex justify-center">
-              <Calendar
-                mode="single"
-                selected={date}
-                onSelect={setDate}
-                modifiers={{ available: availableDays }}
-                modifiersClassNames={{
-                  available: 'day-available',
-                }}
-                disabled={(day) => day < new Date(new Date().setHours(0,0,0,0))}
-                className="p-0"
-              />
+      <DialogContent className="max-w-md">
+        <DialogHeader>
+          <DialogTitle className="font-headline text-xl">Book with {doctorName}</DialogTitle>
+          <DialogDescription>Select an available date and time.</DialogDescription>
+        </DialogHeader>
+        
+        <div className="space-y-4">
+            <div className="flex justify-center rounded-md border">
+                <Calendar
+                    mode="single"
+                    selected={date}
+                    onSelect={setDate}
+                    modifiers={{ available: availableDays }}
+                    modifiersClassNames={{ available: 'day-available' }}
+                    disabled={(day) => day < new Date(new Date().setHours(0,0,0,0))}
+                    className="p-0"
+                />
             </div>
-          </div>
-
-          {/* Time Slots Section */}
-          <div className="border-t md:border-t-0 md:border-l bg-secondary/50 p-6">
-            <h3 className="font-semibold mb-4 text-sm text-foreground">
-              {date ? `Available slots for ${format(date, 'eeee, MMMM d')}` : 'Please select a date'}
-            </h3>
-            {date ? (
-               <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 max-h-[280px] md:max-h-[350px] overflow-y-auto pr-2">
-                {timeSlots.map(slot => {
-                  const isBooked = todaysBookedSlots.includes(slot);
-                  return (
-                    <Button 
-                      key={slot} 
-                      variant={selectedTime === slot ? 'default' : 'outline'}
-                      size="sm"
-                      disabled={isBooked}
-                      onClick={() => setSelectedTime(slot)}
-                      className={cn(
-                        "w-full justify-center",
-                        isBooked && "bg-muted-foreground/30 text-muted-foreground line-through"
-                      )}
-                    >
-                      {slot}
-                    </Button>
-                  );
-                })}
-              </div>
-            ) : (
-                <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
-                    Select a date to see available times.
-                </div>
-            )}
-          </div>
+            <div>
+                <h3 className="font-semibold mb-4 text-sm text-foreground">
+                    {date ? `Available slots for ${format(date, 'eeee, MMMM d')}` : 'Please select a date'}
+                </h3>
+                {date ? (
+                    <div className="max-h-32 overflow-y-auto pr-2 grid grid-cols-3 gap-2">
+                        {timeSlots.map(slot => {
+                            const isBooked = todaysBookedSlots.includes(slot);
+                            return (
+                                <Button 
+                                key={slot} 
+                                variant={selectedTime === slot ? 'default' : 'outline'}
+                                size="sm"
+                                disabled={isBooked}
+                                onClick={() => setSelectedTime(slot)}
+                                className={cn(
+                                    "w-full justify-center",
+                                    isBooked && "bg-muted-foreground/30 text-muted-foreground line-through"
+                                )}
+                                >
+                                {slot}
+                                </Button>
+                            );
+                        })}
+                    </div>
+                ) : (
+                    <div className="flex items-center justify-center h-20 text-muted-foreground text-sm">
+                        Select a date to see available times.
+                    </div>
+                )}
+            </div>
         </div>
-        <DialogFooter className="p-6 border-t">
+
+        <DialogFooter>
           <Button variant="ghost" onClick={() => onOpenChange(false)}>Cancel</Button>
           <Button onClick={handleBooking} disabled={!date || !selectedTime}>Confirm Booking</Button>
         </DialogFooter>
