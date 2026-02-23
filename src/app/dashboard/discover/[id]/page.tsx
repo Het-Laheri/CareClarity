@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from "next/image";
-import { notFound } from 'next/navigation';
+import { notFound, useParams } from 'next/navigation';
 import { placeHolderImages } from "@/lib/placeholder-images";
 import { doctors } from "@/lib/doctors";
 import { Badge } from "@/components/ui/badge";
@@ -18,8 +18,9 @@ const timeSlots = [
   "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM"
 ];
 
-export default function DoctorProfilePage({ params }: { params: { id: string } }) {
+export default function DoctorProfilePage() {
   const { toast } = useToast();
+  const params = useParams<{ id: string }>();
   const doctor = doctors.find((d) => d.id === params.id);
   const image = placeHolderImages.find((p) => p.id === doctor?.imageId);
   
