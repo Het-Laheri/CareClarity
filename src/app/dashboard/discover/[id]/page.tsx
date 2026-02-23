@@ -13,9 +13,11 @@ import { CheckCircle, Clock, Video, MapPin, Stethoscope } from "lucide-react";
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
 
+// Expanded time slots
 const timeSlots = [
-  "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM",
-  "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM"
+  "08:00 AM", "08:30 AM", "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", 
+  "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM",
+  "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM"
 ];
 
 export default function DoctorProfilePage() {
@@ -26,6 +28,7 @@ export default function DoctorProfilePage() {
   
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [selectedTime, setSelectedTime] = useState<string | undefined>();
+  const [bookedSlots, setBookedSlots] = useState<string[]>([]);
 
   if (!doctor) {
     notFound();
@@ -40,10 +43,16 @@ export default function DoctorProfilePage() {
         });
         return;
     }
+
+    // Add to booked slots and reset selection
+    setBookedSlots([...bookedSlots, selectedTime]);
+
     toast({
         title: "Appointment Booked!",
         description: `Your appointment with ${doctor.name} on ${date.toLocaleDateString()} at ${selectedTime} has been successfully booked.`,
     });
+
+    setSelectedTime(undefined);
   }
 
   return (
@@ -107,8 +116,8 @@ export default function DoctorProfilePage() {
                     <CardTitle className="font-headline text-2xl">Book an Appointment</CardTitle>
                     <CardDescription>Select a date and time that works for you.</CardDescription>
                 </CardHeader>
-                <CardContent className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                   <div className="flex justify-center">
+                <CardContent className="flex flex-col lg:flex-row gap-8">
+                   <div className="flex-shrink-0 mx-auto">
                      <Calendar
                         mode="single"
                         selected={date}
@@ -118,14 +127,15 @@ export default function DoctorProfilePage() {
                     />
                    </div>
 
-                    <div className="space-y-4">
-                        <h3 className="font-semibold text-lg flex items-center gap-2"><Clock className="h-5 w-5"/> Available Times</h3>
+                    <div className="flex-1 space-y-4">
+                        <h3 className="font-semibold text-lg flex items-center gap-2"><Clock className="h-5 w-5"/> Available Times for {date ? date.toLocaleDateString() : 'selected date'}</h3>
                         {date ? (
-                             <div className="grid grid-cols-3 gap-2">
+                             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                                 {timeSlots.map(time => (
                                     <Button 
                                         key={time} 
                                         variant="outline"
+                                        disabled={bookedSlots.includes(time)}
                                         className={cn(selectedTime === time && "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground")}
                                         onClick={() => setSelectedTime(time)}
                                     >
@@ -139,7 +149,14 @@ export default function DoctorProfilePage() {
                     </div>
                 </CardContent>
                 <div className="p-6 pt-0">
-                     <Button size="lg" className="w-full" onClick={handleBooking}>Book Appointment</Button>
+                     <Button 
+                        size="lg" 
+                        className="w-full" 
+                        onClick={handleBooking}
+                        disabled={!date || !selectedTime}
+                    >
+                        {selectedTime ? `Book Appointment for ${selectedTime}`: 'Select a Time'}
+                    </Button>
                 </div>
             </Card>
         </div>
