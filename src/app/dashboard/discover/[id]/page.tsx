@@ -1,34 +1,25 @@
 'use client';
 
-import { useState } from 'react';
 import Image from "next/image";
 import { useParams } from 'next/navigation';
 import { notFound } from 'next/navigation';
 import { placeHolderImages } from "@/lib/placeholder-images";
 import { doctors } from "@/lib/doctors";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
-import { CheckCircle, Video, MapPin, Stethoscope } from "lucide-react";
-import { Button } from '@/components/ui/button';
-import { BookingDialog } from '@/components/dashboard/booking-dialog';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { CheckCircle, Video, MapPin, Stethoscope, Info } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 export default function DoctorProfilePage() {
   const params = useParams<{ id: string }>();
   const doctor = doctors.find((d) => d.id === params.id);
   const image = placeHolderImages.find((p) => p.id === doctor?.imageId);
-  const [isBookingOpen, setIsBookingOpen] = useState(false);
 
   if (!doctor) {
     notFound();
   }
 
   return (
-    <>
-      <BookingDialog 
-        isOpen={isBookingOpen} 
-        onOpenChange={setIsBookingOpen} 
-        doctorName={doctor.name} 
-      />
       <div className="flex justify-center p-4 md:p-6">
         <div className="w-full max-w-3xl space-y-6">
           <Card className="overflow-hidden">
@@ -88,14 +79,16 @@ export default function DoctorProfilePage() {
               <CardTitle className="font-headline text-2xl">Book an Appointment</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground mb-4">
-                Check Dr. {doctor.name.split(' ')[1]}'s availability and book a consultation.
-              </p>
-               <Button onClick={() => setIsBookingOpen(true)}>Book Appointment</Button>
+                <Alert>
+                    <Info className="h-4 w-4" />
+                    <AlertTitle>Coming Soon!</AlertTitle>
+                    <AlertDescription>
+                        Online appointment booking is not yet available. Please contact the provider's office directly to schedule.
+                    </AlertDescription>
+                </Alert>
             </CardContent>
           </Card>
         </div>
       </div>
-    </>
   );
 }
