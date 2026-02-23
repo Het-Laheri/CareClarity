@@ -17,8 +17,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        body: ['Literata', 'serif'],
-        headline: ['PT Sans', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
+        headline: ['Lexend', 'sans-serif'],
         code: ['monospace'],
       },
       colors: {

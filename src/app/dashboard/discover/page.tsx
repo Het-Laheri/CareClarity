@@ -20,27 +20,25 @@ export default function DiscoverPage() {
     <div className="flex flex-col gap-8">
       <div>
         <h1 className="font-headline text-3xl font-bold tracking-tight">
-          Discover Doctors & Resources
+          Discover Doctors
         </h1>
         <p className="text-muted-foreground">
           Find specialists tailored to your needs.
         </p>
       </div>
 
-      <Card>
-        <CardContent className="p-4">
-          <div className="flex flex-col gap-4 sm:flex-row">
-            <div className="relative flex-grow">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-              <Input placeholder="Search by name, specialty, or location..." className="pl-10" />
-            </div>
-            <Button>
-              <Search className="mr-2 h-4 w-4" />
-              Search
-            </Button>
+      <div className="mb-6 rounded-lg border bg-card p-4">
+        <div className="flex flex-col gap-4 sm:flex-row">
+          <div className="relative flex-grow">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+            <Input placeholder="Search by name, specialty, or location..." className="pl-10" />
           </div>
-        </CardContent>
-      </Card>
+          <Button>
+            <Search className="mr-2 h-4 w-4" />
+            Search
+          </Button>
+        </div>
+      </div>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {doctors.map((doctor) => {

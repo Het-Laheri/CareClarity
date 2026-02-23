@@ -68,44 +68,42 @@ export default function ResourcesPage() {
         </p>
       </div>
 
-      <Card>
-        <CardContent className="p-4">
-          <div className="flex flex-col gap-4 md:flex-row">
-            <div className="relative flex-grow">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-              <Input placeholder="Search resources..." className="pl-10" />
-            </div>
-            <div className="flex flex-col gap-2 sm:flex-row">
-                <Select>
-                  <SelectTrigger className="w-full sm:w-[180px]">
-                    <SelectValue placeholder="Filter by category" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="sensory">Sensory Needs</SelectItem>
-                    <SelectItem value="communication">Communication</SelectItem>
-                    <SelectItem value="education">Education</SelectItem>
-                    <SelectItem value="behavioral">Behavioral Support</SelectItem>
-                    <SelectItem value="social">Social Skills</SelectItem>
-                    <SelectItem value="early">Early Intervention</SelectItem>
-                  </SelectContent>
-                </Select>
-                 <Select>
-                  <SelectTrigger className="w-full sm:w-[180px]">
-                    <SelectValue placeholder="Filter by age group" />
-                  </SelectTrigger>
-                  <SelectContent>
-                     <SelectItem value="all">All Ages</SelectItem>
-                    <SelectItem value="0-2">0-2 years</SelectItem>
-                    <SelectItem value="3-5">3-5 years</SelectItem>
-                    <SelectItem value="6-9">6-9 years</SelectItem>
-                    <SelectItem value="10-13">10-13 years</SelectItem>
-                    <SelectItem value="14-18">14-18 years</SelectItem>
-                  </SelectContent>
-                </Select>
-            </div>
+      <div className="mb-6 rounded-lg border bg-card p-4">
+        <div className="flex flex-col gap-4 md:flex-row">
+          <div className="relative flex-grow">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+            <Input placeholder="Search resources..." className="pl-10" />
           </div>
-        </CardContent>
-      </Card>
+          <div className="flex flex-col gap-2 sm:flex-row">
+              <Select>
+                <SelectTrigger className="w-full sm:w-[180px]">
+                  <SelectValue placeholder="Filter by category" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="sensory">Sensory Needs</SelectItem>
+                  <SelectItem value="communication">Communication</SelectItem>
+                  <SelectItem value="education">Education</SelectItem>
+                  <SelectItem value="behavioral">Behavioral Support</SelectItem>
+                  <SelectItem value="social">Social Skills</SelectItem>
+                  <SelectItem value="early">Early Intervention</SelectItem>
+                </SelectContent>
+              </Select>
+                <Select>
+                <SelectTrigger className="w-full sm:w-[180px]">
+                  <SelectValue placeholder="Filter by age group" />
+                </SelectTrigger>
+                <SelectContent>
+                    <SelectItem value="all">All Ages</SelectItem>
+                  <SelectItem value="0-2">0-2 years</SelectItem>
+                  <SelectItem value="3-5">3-5 years</SelectItem>
+                  <SelectItem value="6-9">6-9 years</SelectItem>
+                  <SelectItem value="10-13">10-13 years</SelectItem>
+                  <SelectItem value="14-18">14-18 years</SelectItem>
+                </SelectContent>
+              </Select>
+          </div>
+        </div>
+      </div>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {resources.map((resource) => (

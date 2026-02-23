@@ -12,7 +12,7 @@ export default function LoginPage() {
         <div className="mb-8 flex justify-center">
           <Logo />
         </div>
-        <Card>
+        <Card className="shadow-xl">
           <CardHeader className="text-center">
             <CardTitle className="font-headline text-2xl">Welcome Back</CardTitle>
             <CardDescription>Enter your credentials to access your account</CardDescription>
