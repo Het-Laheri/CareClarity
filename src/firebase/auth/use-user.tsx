@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { onAuthStateChanged, type User } from 'firebase/auth';
 import { useAuth } from '../provider';
 
@@ -11,8 +11,8 @@ export function useUser() {
 
   useEffect(() => {
     if (!auth) {
-        setLoading(false);
-        return;
+      setLoading(false);
+      return;
     }
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);

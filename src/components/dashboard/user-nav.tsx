@@ -16,7 +16,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { CreditCard, LogOut, Settings, User } from "lucide-react";
+import { LogOut, Settings, User } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth, useUser } from "@/firebase";
 import { signOut } from "firebase/auth";
@@ -29,6 +29,7 @@ export function UserNav() {
 
   const handleLogout = async () => {
     if (auth) {
+      await fetch('/api/auth/session', { method: 'DELETE' });
       await signOut(auth);
       router.push('/login');
     }
@@ -37,13 +38,13 @@ export function UserNav() {
   if (loading) {
     return <Skeleton className="h-9 w-9 rounded-full" />;
   }
-  
+
   if (!user) {
-      return (
-        <Button asChild>
-            <Link href="/login">Login</Link>
-        </Button>
-      )
+    return (
+      <Button asChild>
+        <Link href="/login">Login</Link>
+      </Button>
+    )
   }
 
   const userInitial = user.displayName ? user.displayName.charAt(0).toUpperCase() : (user.email ? user.email.charAt(0).toUpperCase() : 'U');
@@ -51,7 +52,7 @@ export function UserNav() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+        <Button variant="ghost" className="relative h-8 w-8 rounded-full" aria-label="User menu">
           <Avatar className="h-9 w-9">
             <AvatarImage src={user.photoURL || `https://picsum.photos/seed/${user.uid}/200/200`} alt={user.displayName || "user avatar"} data-ai-hint="user avatar" />
             <AvatarFallback>{userInitial}</AvatarFallback>
@@ -75,13 +76,11 @@ export function UserNav() {
               <span>Profile</span>
             </Link>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            <CreditCard className="mr-2 h-4 w-4" />
-            <span>Billing</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Settings className="mr-2 h-4 w-4" />
-            <span>Settings</span>
+          <DropdownMenuItem asChild>
+            <Link href="/dashboard/settings">
+              <Settings className="mr-2 h-4 w-4" />
+              <span>Settings</span>
+            </Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />

@@ -11,6 +11,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Loader2, Terminal, Sparkles, Send } from 'lucide-react';
 import { Logo } from '@/components/logo';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Feedback } from '@/components/feedback';
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -22,22 +23,22 @@ function SubmitButton() {
 }
 
 function PromptSuggestions({ onPromptClick }: { onPromptClick: (prompt: string) => void }) {
-    const suggestions = [
-        "How can I help my non-verbal child express their needs?",
-        "What are some strategies for managing sensory overload in public places?",
-        "Can you explain what an IEP is and how to prepare for a meeting?",
-        "Suggest some simple social skill activities for a 5-year-old.",
-    ];
+  const suggestions = [
+    "How can I help my non-verbal child express their needs?",
+    "What are some strategies for managing sensory overload in public places in India?",
+    "What rights does my child have under the RPWD Act 2016 for inclusive education?",
+    "Suggest some simple social skill activities for a 5-year-old.",
+  ];
 
-    return (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {suggestions.map((prompt) => (
-                <Card key={prompt} className="p-4 hover:bg-accent transition-colors cursor-pointer" onClick={() => onPromptClick(prompt)}>
-                    <p className="text-sm">{prompt}</p>
-                </Card>
-            ))}
-        </div>
-    )
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {suggestions.map((prompt) => (
+        <Card key={prompt} className="p-4 hover:bg-accent transition-colors cursor-pointer" onClick={() => onPromptClick(prompt)}>
+          <p className="text-sm">{prompt}</p>
+        </Card>
+      ))}
+    </div>
+  )
 }
 
 function AskQuestionForm() {
@@ -49,15 +50,15 @@ function AskQuestionForm() {
 
   const handlePromptClick = (prompt: string) => {
     if (textareaRef.current) {
-        textareaRef.current.value = prompt;
-        formRef.current?.requestSubmit();
+      textareaRef.current.value = prompt;
+      formRef.current?.requestSubmit();
     }
   }
 
   // Scroll to bottom when new messages appear
   useEffect(() => {
     if (chatContainerRef.current) {
-        chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
     }
   }, [state]);
 
@@ -69,55 +70,58 @@ function AskQuestionForm() {
           <div className="space-y-8">
             {/* User Query */}
             <div className="flex items-start gap-4">
-               <Avatar className="h-9 w-9">
-                 <AvatarImage src="https://picsum.photos/seed/user/200/200" alt="@user" data-ai-hint="user avatar" />
-                 <AvatarFallback>CG</AvatarFallback>
-               </Avatar>
+              <Avatar className="h-9 w-9">
+                <AvatarImage src="https://picsum.photos/seed/user/200/200" alt="@user" data-ai-hint="user avatar" />
+                <AvatarFallback>CG</AvatarFallback>
+              </Avatar>
               <div className="flex-1">
-                 <p className="font-semibold">You</p>
-                 <p className="mt-1">{state.form.query}</p>
+                <p className="font-semibold">You</p>
+                <p className="mt-1">{state.form.query}</p>
               </div>
             </div>
 
             {/* AI Response */}
             <div className="flex items-start gap-4">
               <Avatar className="h-9 w-9">
-                  <div className="flex h-full w-full items-center justify-center rounded-full bg-primary text-primary-foreground">
-                      <Sparkles className="h-5 w-5"/>
-                  </div>
+                <div className="flex h-full w-full items-center justify-center rounded-full bg-primary text-primary-foreground">
+                  <Sparkles className="h-5 w-5" />
+                </div>
               </Avatar>
               <div className="flex-1">
-                 <p className="font-semibold">CareClarity AI</p>
-                 <div className="mt-2 space-y-4">
-                    {state.error && (
-                      <Alert variant="destructive">
-                        <Terminal className="h-4 w-4" />
-                        <AlertTitle>Error</AlertTitle>
-                        <AlertDescription>{state.error}</AlertDescription>
-                      </Alert>
-                    )}
-                    {state.result && (
-                      <div className="space-y-4">
-                        <p className="whitespace-pre-wrap">{state.result.response}</p>
-                        <Accordion type="single" collapsible className="w-full">
-                          <AccordionItem value="item-1">
-                            <AccordionTrigger>Why this response?</AccordionTrigger>
-                            <AccordionContent className="space-y-2">
-                              <p className="font-semibold">Explanation:</p>
-                              <p className="whitespace-pre-wrap">{state.result.explanation}</p>
-                              <p className="text-sm text-muted-foreground pt-2">Source Category: {state.result.sourceCategory}</p>
-                            </AccordionContent>
-                          </AccordionItem>
-                        </Accordion>
-                        <Alert>
-                          <AlertTitle className="font-bold">Disclaimer</AlertTitle>
-                          <AlertDescription>
-                            {state.result.disclaimer}
-                          </AlertDescription>
-                        </Alert>
+                <p className="font-semibold">CareClarity AI</p>
+                <div className="mt-2 space-y-4">
+                  {state.error && (
+                    <Alert variant="destructive">
+                      <Terminal className="h-4 w-4" />
+                      <AlertTitle>Error</AlertTitle>
+                      <AlertDescription>{state.error}</AlertDescription>
+                    </Alert>
+                  )}
+                  {state.result && (
+                    <div className="space-y-4">
+                      <p className="whitespace-pre-wrap">{state.result.response}</p>
+                      <Accordion type="single" collapsible className="w-full">
+                        <AccordionItem value="item-1">
+                          <AccordionTrigger>Why this response?</AccordionTrigger>
+                          <AccordionContent className="space-y-2">
+                            <p className="font-semibold">Explanation:</p>
+                            <p className="whitespace-pre-wrap">{state.result.explanation}</p>
+                            <p className="text-sm text-muted-foreground pt-2">Source Category: {state.result.sourceCategory}</p>
+                          </AccordionContent>
+                        </AccordionItem>
+                      </Accordion>
+                      <div className="pt-2 border-t mt-4">
+                        <Feedback contentId={state.form.query} contentType="ai_response" />
                       </div>
-                    )}
-                 </div>
+                      <Alert>
+                        <AlertTitle className="font-bold">Disclaimer</AlertTitle>
+                        <AlertDescription>
+                          {state.result.disclaimer}
+                        </AlertDescription>
+                      </Alert>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -151,8 +155,8 @@ function AskQuestionForm() {
           />
           <SubmitButton />
         </form>
-         <p className="text-xs text-center text-muted-foreground mt-2">
-            CareClarity can make mistakes. Consider checking important information. This is not a diagnostic or treatment tool.
+        <p className="text-xs text-center text-muted-foreground mt-2">
+          CareClarity can make mistakes. Consider checking important information. This is not a diagnostic or treatment tool.
         </p>
       </div>
     </div>

@@ -15,6 +15,12 @@ import SidebarNav from "@/components/dashboard/sidebar-nav";
 import { Logo } from "@/components/logo";
 import { Settings } from "lucide-react";
 import { AuthGuard } from "@/components/auth/auth-guard";
+import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'Dashboard',
+};
 
 export default function DashboardLayout({
   children,
@@ -28,27 +34,31 @@ export default function DashboardLayout({
           <Sidebar collapsible="icon">
             <SidebarHeader className="p-4">
               <div className="flex items-center justify-between">
-                <Logo />
-                <SidebarTrigger />
+                <Logo href="/dashboard/profile" />
+                <SidebarTrigger aria-label="Toggle sidebar" />
               </div>
             </SidebarHeader>
             <SidebarContent>
               <SidebarNav />
             </SidebarContent>
             <SidebarFooter>
-               <SidebarMenu>
-                  <SidebarMenuItem>
-                      <SidebarMenuButton tooltip="Settings">
-                          <Settings />
-                          <span>Settings</span>
-                      </SidebarMenuButton>
-                  </SidebarMenuItem>
-               </SidebarMenu>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild tooltip="Settings">
+                    <Link href="/dashboard/settings">
+                      <Settings />
+                      <span>Settings</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </SidebarMenu>
             </SidebarFooter>
           </Sidebar>
           <SidebarInset className="min-w-0">
             <Header />
-            <main className="flex-1">{children}</main>
+            <main id="main-content" className="flex-1">
+              {children}
+            </main>
           </SidebarInset>
         </div>
       </SidebarProvider>
