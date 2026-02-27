@@ -11,7 +11,6 @@ import {
     Stethoscope,
     Calendar,
     BookOpen,
-    Settings,
     LogOut,
     Menu,
     X,

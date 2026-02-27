@@ -12,15 +12,13 @@ import { Button } from "@/components/ui/button";
 import {
     Calendar,
     Clock,
-    User,
     Stethoscope,
     Search,
     Trash2,
     CheckCircle2,
     XCircle,
     Loader2,
-    Filter,
-    ArrowRight
+    Filter
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";

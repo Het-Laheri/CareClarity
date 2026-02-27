@@ -17,10 +17,7 @@ import {
     Area,
     XAxis,
     YAxis,
-    Tooltip,
-    BarChart,
-    Bar,
-    Cell
+    Tooltip
 } from "recharts";
 
 const data = [

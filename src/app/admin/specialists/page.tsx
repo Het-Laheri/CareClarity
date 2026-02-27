@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import {
     Card,
     CardContent,
@@ -17,10 +17,7 @@ import {
     Trash2,
     MapPin,
     Video,
-    MoreVertical,
     Loader2,
-    CheckCircle,
-    XCircle,
     Stethoscope
 } from "lucide-react";
 import {
@@ -55,11 +52,7 @@ export default function AdminSpecialists() {
     const [currentDoctor, setCurrentDoctor] = useState<Partial<Doctor>>({});
     const { toast } = useToast();
 
-    useEffect(() => {
-        fetchDoctors();
-    }, []);
-
-    const fetchDoctors = async () => {
+    const fetchDoctors = useCallback(async () => {
         setIsLoading(true);
         try {
             const res = await fetch('/api/doctors');
@@ -74,7 +67,11 @@ export default function AdminSpecialists() {
         } finally {
             setIsLoading(false);
         }
-    };
+    }, [toast]);
+
+    useEffect(() => {
+        fetchDoctors();
+    }, [fetchDoctors]);
 
     const handleDelete = async (id: string) => {
         if (!confirm('Are you sure you want to delete this specialist?')) return;
@@ -277,8 +274,8 @@ export default function AdminSpecialists() {
                                     </div>
 
                                     <div className="mt-6 pt-4 border-t">
-                                        <p className="text-xs text-muted-foreground line-clamp-2 italic italic">
-                                            "{doctor.bio || 'No professional biography provided yet.'}"
+                                        <p className="text-xs text-muted-foreground line-clamp-2 italic">
+                                            &quot;{doctor.bio || 'No professional biography provided yet.'}&quot;
                                         </p>
                                     </div>
                                 </div>
