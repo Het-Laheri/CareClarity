@@ -1,0 +1,8 @@
+Retrieving project…
+Fetching deployments in hetlaheri1-6395s-projects
+> Deployments for hetlaheri1-6395s-projects/careclarity [827ms]
+
+  Age     Project                                   Deployment                                                             Status      Environment     Duration     Username            
+  13h     hetlaheri1-6395s-projects/careclarity     https://careclarity-p5x22jnqp-hetlaheri1-6395s-projects.vercel.app     ● Ready     Production      2m           hetlaheri1-6395     
+
+https://careclarity-p5x22jnqp-hetlaheri1-6395s-projects.vercel.app

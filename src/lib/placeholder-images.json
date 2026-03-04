@@ -3,7 +3,7 @@
     {
       "id": "landing-hero",
       "description": "Parent and child spending quality time together",
-      "imageUrl": "https://placehold.co/800x600/6366f1/ffffff?text=Parent+and+Child",
+      "imageUrl": "/images/landing.jpg",
       "imageHint": "parent child together"
     },
     {
