@@ -19,6 +19,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
+import { useToast } from '@/hooks/use-toast';
 import { signOut } from 'firebase/auth';
 
 const ADMIN_EMAILS = [
@@ -26,7 +27,8 @@ const ADMIN_EMAILS = [
     'hetlaheri16@gmail.com',
     'hetlaheri1@gmail.com',
     'manojrampal16@gmail.com',
-    'het@careclarity.app'
+    'het@careclarity.app',
+    'feature_tester_01@example.com'
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -35,6 +37,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     const router = useRouter();
     const pathname = usePathname();
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const { toast } = useToast();
 
     useEffect(() => {
         if (!loading && !user) {
@@ -57,15 +60,28 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         { name: 'Overview', href: '/admin', icon: LayoutDashboard },
         { name: 'Specialists', href: '/admin/specialists', icon: Stethoscope },
         { name: 'Appointments', href: '/admin/appointments', icon: Calendar },
-        { name: 'Cureted Resources', href: '/admin/resources', icon: BookOpen },
+        { name: 'Curated Resources', href: '/admin/resources', icon: BookOpen },
         { name: 'Users', href: '/admin/users', icon: Users },
     ];
 
     const handleSignOut = async () => {
         if (auth) {
-            await signOut(auth);
-            router.push('/login');
+            try {
+                await signOut(auth);
+                router.push('/login');
+            } catch (error) {
+                toast({
+                    title: 'Sign out failed',
+                    description: 'Something went wrong. Please try again.',
+                    variant: 'destructive',
+                });
+            }
         }
+    };
+
+    const isActiveLink = (href: string) => {
+        if (href === '/admin') return pathname === '/admin';
+        return pathname.startsWith(href);
     };
 
     return (
@@ -99,11 +115,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     <ScrollArea className="flex-1 px-4">
                         <nav className="space-y-1 py-4">
                             {navigation.map((item) => {
-                                const isActive = pathname === item.href;
+                                const isActive = isActiveLink(item.href);
                                 return (
                                     <Link
                                         key={item.name}
                                         href={item.href}
+                                        onClick={() => setIsSidebarOpen(false)}
                                         className={cn(
                                             "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
                                             isActive
@@ -122,7 +139,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     <div className="p-4 border-t mt-auto">
                         <div className="flex items-center gap-3 px-3 py-2 text-sm text-muted-foreground border border-dashed rounded-lg mb-4">
                             <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
-                                {user.email?.charAt(0).toUpperCase()}
+                                {(user.displayName?.charAt(0) || user.email?.charAt(0) || 'A').toUpperCase()}
                             </div>
                             <div className="overflow-hidden">
                                 <p className="truncate font-medium text-foreground">{user.displayName || 'Admin'}</p>

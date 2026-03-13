@@ -69,10 +69,27 @@ export default function LoginPage() {
       router.push('/dashboard');
     } catch (error) {
       console.error('Google login error:', error);
+
+      let errorMessage = error instanceof Error ? error.message : 'Unknown error';
+
+      if (error && typeof error === 'object' && 'code' in error) {
+        const code = (error as { code: string }).code;
+        if (code === 'auth/popup-closed-by-user' || code === 'auth/cancelled-popup-request') {
+          return toast({
+            variant: "default",
+            title: "Login Cancelled",
+            description: "The Google sign-in popup was closed.",
+          });
+        }
+        if (code === 'auth/popup-blocked') {
+          errorMessage = "Your browser blocked the login popup. Please allow popups for this site.";
+        }
+      }
+
       toast({
         variant: "destructive",
         title: "Google Login failed",
-        description: "Could not sign in with Google. Please try again.",
+        description: `Could not sign in with Google. Details: ${errorMessage}`,
       });
     }
   };

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import {
     Card,
     CardContent,
@@ -81,11 +81,7 @@ export default function AdminResources() {
     const [currentResource, setCurrentResource] = useState<Partial<Resource>>({});
     const { toast } = useToast();
 
-    useEffect(() => {
-        fetchResources();
-    }, []);
-
-    const fetchResources = async () => {
+    const fetchResources = useCallback(async () => {
         setIsLoading(true);
         try {
             const res = await fetch('/api/resources');
@@ -100,7 +96,11 @@ export default function AdminResources() {
         } finally {
             setIsLoading(false);
         }
-    };
+    }, [toast]);
+
+    useEffect(() => {
+        fetchResources();
+    }, [fetchResources]);
 
     const handleDelete = async (id: number) => {
         if (!confirm('Permanently remove this resource from the public library?')) return;

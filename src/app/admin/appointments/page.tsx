@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import {
     Card,
     CardContent,
@@ -43,11 +43,7 @@ export default function AdminAppointments() {
     const [searchQuery, setSearchQuery] = useState('');
     const { toast } = useToast();
 
-    useEffect(() => {
-        fetchAppointments();
-    }, []);
-
-    const fetchAppointments = async () => {
+    const fetchAppointments = useCallback(async () => {
         setIsLoading(true);
         try {
             const res = await fetch('/api/admin/appointments');
@@ -62,7 +58,11 @@ export default function AdminAppointments() {
         } finally {
             setIsLoading(false);
         }
-    };
+    }, [toast]);
+
+    useEffect(() => {
+        fetchAppointments();
+    }, [fetchAppointments]);
 
     const handleDelete = async (id: string) => {
         if (!confirm('Permanently remove this appointment record?')) return;

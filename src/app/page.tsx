@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Bot, Stethoscope, Users, CheckCircle, Shield, Heart } from "lucide-react";
 import { Logo } from "@/components/logo";
+import { MobileNav } from "@/components/mobile-nav";
 import { placeHolderImages } from "@/lib/placeholder-images";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ui/scroll-reveal";
 import { AnimatedCard } from "@/components/ui/animated-card";
@@ -19,7 +20,7 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 sm:h-20 items-center justify-between">
             <Logo />
-            <div className="flex items-center space-x-2 sm:space-x-4">
+            <div className="hidden md:flex items-center space-x-4">
               <Button variant="ghost" size="sm" asChild>
                 <Link href="/login">Login</Link>
               </Button>
@@ -27,6 +28,7 @@ export default function Home() {
                 <Link href="/signup">Get Started</Link>
               </Button>
             </div>
+            <MobileNav />
           </div>
         </div>
       </header>
@@ -131,11 +133,11 @@ export default function Home() {
                 We provide the tools you need, right when you need them — tailored for Indian families navigating neurodevelopmental care.
               </p>
             </ScrollReveal>
-            <StaggerContainer className="mt-12 sm:mt-16 grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-3">
+            <StaggerContainer className="mt-12 sm:mt-16 grid grid-cols-1 gap-8 sm:gap-10 md:grid-cols-3">
               <StaggerItem>
                 <AnimatedCard className="h-full overflow-hidden">
                   {featureAI && (
-                    <div className="relative h-40 sm:h-48 w-full overflow-hidden">
+                    <div className="relative aspect-[4/3] w-full overflow-hidden">
                       <Image
                         src={featureAI.imageUrl}
                         alt={featureAI.description}
@@ -147,9 +149,9 @@ export default function Home() {
                       />
                     </div>
                   )}
-                  <div className="p-5 sm:p-6 text-center">
-                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/20 -mt-10 relative z-10 border-4 border-background">
-                      <Bot className="h-6 w-6 text-primary" />
+                  <div className="px-5 pb-6 sm:px-6 sm:pb-8 text-center">
+                    <div className="mx-auto flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-primary/10 -mt-7 sm:-mt-8 relative z-10 border-4 border-background shadow-sm">
+                      <Bot className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
                     </div>
                     <h3 className="font-headline text-lg sm:text-xl font-semibold mt-3">AI-Assisted Guidance</h3>
                     <p className="text-sm sm:text-base text-muted-foreground mt-2">Get explainable, safe, and grounded answers to your questions, powered by AI that understands your needs without giving medical advice.</p>
@@ -159,7 +161,7 @@ export default function Home() {
               <StaggerItem>
                 <AnimatedCard className="h-full overflow-hidden">
                   {featureDoctor && (
-                    <div className="relative h-40 sm:h-48 w-full overflow-hidden">
+                    <div className="relative aspect-[4/3] w-full overflow-hidden">
                       <Image
                         src={featureDoctor.imageUrl}
                         alt={featureDoctor.description}
@@ -171,9 +173,9 @@ export default function Home() {
                       />
                     </div>
                   )}
-                  <div className="p-5 sm:p-6 text-center">
-                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/20 -mt-10 relative z-10 border-4 border-background">
-                      <Stethoscope className="h-6 w-6 text-primary" />
+                  <div className="px-5 pb-6 sm:px-6 sm:pb-8 text-center">
+                    <div className="mx-auto flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-primary/10 -mt-7 sm:-mt-8 relative z-10 border-4 border-background shadow-sm">
+                      <Stethoscope className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
                     </div>
                     <h3 className="font-headline text-lg sm:text-xl font-semibold mt-3">Doctor Discovery</h3>
                     <p className="text-sm sm:text-base text-muted-foreground mt-2">Find and connect with specialists and resources tailored to your child&apos;s needs, location, and condition categories.</p>
@@ -183,7 +185,7 @@ export default function Home() {
               <StaggerItem>
                 <AnimatedCard className="h-full overflow-hidden">
                   {featureCommunity && (
-                    <div className="relative h-40 sm:h-48 w-full overflow-hidden">
+                    <div className="relative aspect-[4/3] w-full overflow-hidden">
                       <Image
                         src={featureCommunity.imageUrl}
                         alt={featureCommunity.description}
@@ -195,9 +197,9 @@ export default function Home() {
                       />
                     </div>
                   )}
-                  <div className="p-5 sm:p-6 text-center">
-                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/20 -mt-10 relative z-10 border-4 border-background">
-                      <Users className="h-6 w-6 text-primary" />
+                  <div className="px-5 pb-6 sm:px-6 sm:pb-8 text-center">
+                    <div className="mx-auto flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-primary/10 -mt-7 sm:-mt-8 relative z-10 border-4 border-background shadow-sm">
+                      <Users className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
                     </div>
                     <h3 className="font-headline text-lg sm:text-xl font-semibold mt-3">Community & Resources</h3>
                     <p className="text-sm sm:text-base text-muted-foreground mt-2">Access a curated knowledge base and connect with a community that understands your journey. (Feature coming soon)</p>
