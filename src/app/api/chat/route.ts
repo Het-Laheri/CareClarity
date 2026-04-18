@@ -134,7 +134,7 @@ export async function POST(req: Request) {
                         const jsonPartStr = errStr.substring(errStr.indexOf('{'));
                         const parsedErr = JSON.parse(jsonPartStr);
                         const failedGen = parsedErr?.error?.failed_generation || '';
-                        const jsonMatch = failedGen.match(/\{.*\}/s);
+                        const jsonMatch = failedGen.match(/\{[\s\S]*\}/);
                         if (jsonMatch) {
                             const args = JSON.parse(jsonMatch[0]);
                             const toolResult = searchResources(args.query);
