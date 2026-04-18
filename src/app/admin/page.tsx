@@ -29,8 +29,6 @@ const iconMap: Record<string, any> = {
 
 const COLORS = ['#6366f1', '#8b5cf6', '#a855f7', '#d946ef', '#ec4899'];
 
-const COLORS = ['#6366f1', '#8b5cf6', '#a855f7', '#d946ef', '#ec4899'];
-
 export default function AdminDashboard() {
     const [dashboardData, setDashboardData] = useState<any>(null);
     const [isLoading, setIsLoading] = useState(true);
