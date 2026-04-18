@@ -25,7 +25,7 @@ export async function GET(req: NextRequest) {
         
         const registeredUsers = listUsersResult.users.map((record) => {
             const joinedDate = new Date(record.metadata.creationTime || Date.now());
-            const formattedJoined = joinedDate.toLocaleDateString('en-US', { day: 'short', month: 'short', year: 'numeric' });
+            const formattedJoined = joinedDate.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
             
             return {
                 id: record.uid,
