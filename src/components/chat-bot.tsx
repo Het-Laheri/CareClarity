@@ -136,7 +136,7 @@ export default function ChatBot() {
                             </Select>
                         </div>
                         {/* Heart / Feedback button moved to top-right */}
-                        <Feedback />
+                        <Feedback contentId="chat-interface" contentType="core-feature" />
                     </div>
                 </div>
             </div>
