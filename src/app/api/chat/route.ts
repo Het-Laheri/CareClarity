@@ -33,11 +33,14 @@ function searchResources(query: string): string {
             resource.category.toLowerCase(),
             ...resource.tags.map(t => t.toLowerCase()),
         ];
+        const qWords = q.split(' ').filter(w => w.length > 3);
         for (const field of searchFields) {
-            if (field.includes(q)) score += 3;
-            const qWords = q.split(' ');
-            for (const word of qWords) {
-                if (word.length > 3 && field.includes(word)) score += 1;
+            if (field.includes(q)) {
+                score += 3;
+            } else {
+                for (const word of qWords) {
+                    if (field.includes(word)) score += 1;
+                }
             }
         }
         return { resource, score };
@@ -131,7 +134,9 @@ export async function POST(req: Request) {
                 const errStr = err?.message || '';
                 if (errStr.includes('tool_use_failed')) {
                     try {
-                        const jsonPartStr = errStr.substring(errStr.indexOf('{'));
+                        const braceIdx = errStr.indexOf('{');
+                        if (braceIdx === -1) throw err;
+                        const jsonPartStr = errStr.substring(braceIdx);
                         const parsedErr = JSON.parse(jsonPartStr);
                         const failedGen = parsedErr?.error?.failed_generation || '';
                         const jsonMatch = failedGen.match(/\{[\s\S]*\}/);
@@ -139,8 +144,8 @@ export async function POST(req: Request) {
                             const args = JSON.parse(jsonMatch[0]);
                             const toolResult = searchResources(args.query);
                             loopMessages.push({
-                                role: 'system',
-                                content: `System automatically executed search_resources. Context found: ${toolResult}`
+                                role: 'user',
+                                content: `[Tool fallback] search_resources returned: ${toolResult}. Use this to answer.`
                             });
                             continue;
                         }
@@ -150,7 +155,7 @@ export async function POST(req: Request) {
 
                     if (round < 2) {
                         loopMessages.push({
-                            role: 'system',
+                            role: 'user',
                             content: `Observation: Your tool call failed due to syntax. Output valid JSON if you use a tool.`
                         });
                         continue;
