@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo, useEffect } from 'react';
+import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -166,7 +167,9 @@ export default function ResourcesPage() {
                   <p className="text-xs sm:text-sm text-muted-foreground line-clamp-3">{resource.description}</p>
                 </CardContent>
                 <CardFooter className="pt-2 flex flex-col gap-3">
-                  <Button className="w-full" size="sm">Read More</Button>
+                  <Link href={`/dashboard/resources/${resource.id}`} className="w-full">
+                    <Button className="w-full" size="sm">Read More</Button>
+                  </Link>
                   <div className="w-full flex justify-center border-t pt-2">
                     <Feedback contentId={resource.id.toString()} contentType="resource" />
                   </div>
@@ -229,7 +232,9 @@ export default function ResourcesPage() {
                   <p className="text-xs sm:text-sm text-muted-foreground line-clamp-3">{resource.description}</p>
                 </CardContent>
                 <CardFooter className="pt-2 flex flex-col gap-3">
-                  <Button className="w-full" size="sm">Read More</Button>
+                  <Link href={`/dashboard/resources/${resource.id}`} className="w-full">
+                    <Button className="w-full" size="sm">Read More</Button>
+                  </Link>
                   <div className="w-full flex justify-center border-t pt-2">
                     <Feedback contentId={resource.id.toString()} contentType="resource" />
                   </div>
