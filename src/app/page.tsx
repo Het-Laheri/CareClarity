@@ -200,14 +200,14 @@ export default function Home() {
           <section className="py-16 lg:py-20 bg-white">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <div 
-                style={{ backgroundColor: '#0f172a' }} // Explicit fallback for slate-900 in case Tailwind purges it
+                style={{ backgroundColor: '#0f172a' }}
                 className="rounded-[2rem] px-6 py-12 sm:px-12 sm:py-16 text-center shadow-2xl max-w-4xl mx-auto"
               >
-                <div className="relative z-10 text-white">
-                  <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-4">
+                <div className="relative z-10">
+                  <h2 style={{ color: 'white' }} className="text-2xl sm:text-3xl font-bold tracking-tight mb-4">
                     Early intervention changes lives.
                   </h2>
-                  <p className="text-base sm:text-lg text-slate-300 max-w-xl mx-auto mb-8">
+                  <p style={{ color: '#cbd5e1' }} className="text-base sm:text-lg max-w-xl mx-auto mb-8">
                     The sooner you understand what your child needs, the faster they can start thriving. Don't wait and worry.
                   </p>
                   <Button size="lg" style={{ backgroundColor: '#2563eb', color: 'white', border: 'none' }} className="rounded-full h-12 px-8 text-base font-bold shadow-lg hover:opacity-90 transition-opacity w-full sm:w-auto" asChild>
