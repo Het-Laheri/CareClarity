@@ -58,7 +58,7 @@ export default function Home() {
                         Check your child's symptoms
                       </Link>
                     </Button>
-                    <p className="mt-3 text-xs text-slate-500 font-medium">Takes 2–3 minutes. No signup required.</p>
+                    <p className="mt-3 text-xs text-slate-500 font-medium">Takes 2–3 minutes. Quick, secure signup.</p>
                   </div>
                 </div>
               </ScrollReveal>
