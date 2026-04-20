@@ -18,7 +18,7 @@ export default function TermsPage() {
         <div className="prose prose-slate max-w-none text-slate-600 leading-relaxed space-y-6">
           <p><strong>Effective Date: {new Date().toLocaleDateString()}</strong></p>
           
-          <p>Welcome to CareClarity! These terms and conditions outline the rules and regulations for the use of CareClarity's Website, located at CareClarity.in.</p>
+          <p>Welcome to CareClarity! These terms and conditions outline the rules and regulations for the use of CareClarity&apos;s Website, located at CareClarity.in.</p>
           <p>By accessing this website, we assume you accept these terms and conditions. Do not continue to use CareClarity if you do not agree to take all of the terms and conditions stated on this page.</p>
 
           <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">1. Not Medical Advice (Crucial Disclaimer)</h2>
@@ -31,7 +31,7 @@ export default function TermsPage() {
 
           <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">2. Artificial Intelligence</h2>
           <p>
-            CareClarity utilizes advanced language models (AI) to process user queries and map symptoms to established pediatric pathways. While we strive to ensure models are clinically-grounded, AI responses can generate inaccuracies (hallucinations). You agree to independently verify any guidance regarding your child's legal rights (e.g. under the RPWD Act) or developmental therapies.
+            CareClarity utilizes advanced language models (AI) to process user queries and map symptoms to established pediatric pathways. While we strive to ensure models are clinically-grounded, AI responses can generate inaccuracies (hallucinations). You agree to independently verify any guidance regarding your child&apos;s legal rights (e.g. under the RPWD Act) or developmental therapies.
           </p>
 
           <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">3. User Conduct</h2>

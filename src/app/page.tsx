@@ -124,7 +124,7 @@ export default function Home() {
                 </div>
                 <p className="text-lg font-bold text-slate-900 italic">&quot;Google is terrifying.&quot;</p>
                 <p className="mt-2 text-slate-600 leading-relaxed text-sm">
-                  Searching for symptoms gives you a thousand conflicting, terrifying answers that don't apply to your situation.
+                  Searching for symptoms gives you a thousand conflicting, terrifying answers that don&apos;t apply to your situation.
                 </p>
               </ScrollReveal>
 

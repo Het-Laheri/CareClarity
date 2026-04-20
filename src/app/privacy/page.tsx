@@ -18,13 +18,13 @@ export default function PrivacyPage() {
         <div className="prose prose-slate max-w-none text-slate-600 leading-relaxed space-y-6">
           <p><strong>Last Updated: {new Date().toLocaleDateString()}</strong></p>
           
-          <p>CareClarity ("we", "us", or "our") respects your privacy and is committed to protecting it through our compliance with this Privacy Policy. This policy describes the types of information we may collect from you or that you may provide when you visit the website careclarity.in (our "Website") and our practices for collecting, using, maintaining, protecting, and disclosing that information, in accordance with applicable Indian laws including the Information Technology Act, 2000.</p>
+          <p>CareClarity (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) respects your privacy and is committed to protecting it through our compliance with this Privacy Policy. This policy describes the types of information we may collect from you or that you may provide when you visit the website careclarity.in (our &quot;Website&quot;) and our practices for collecting, using, maintaining, protecting, and disclosing that information, in accordance with applicable Indian laws including the Information Technology Act, 2000.</p>
 
           <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">1. Information We Collect About You</h2>
           <p>We collect several types of information from and about users of our Website, including:</p>
           <ul className="list-disc pl-6 space-y-2">
             <li><strong>Personal Information:</strong> Name, email address (e.g. hetlaheri1@gmail.com), phone number (e.g. +91 9137344080), and account authentication details via Google Firebase Auth.</li>
-            <li><strong>Health Data (Informational):</strong> Inputs you provide regarding your child's age, behaviors, and developmental milestones to operate the AI symptom guidance tool. This data is strictly used to provide localized informational mapping.</li>
+            <li><strong>Health Data (Informational):</strong> Inputs you provide regarding your child&apos;s age, behaviors, and developmental milestones to operate the AI symptom guidance tool. This data is strictly used to provide localized informational mapping.</li>
             <li><strong>Usage Details:</strong> IP addresses, browser types, operating systems, and details of your visits to our Website including location data and communication data.</li>
           </ul>
 
