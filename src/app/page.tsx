@@ -43,19 +43,19 @@ export default function Home() {
                 </div>
                 
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
-                  Worried about your child's development?<br />
+                  Worried about your child&apos;s development?<br />
                   <span className="text-blue-600">Get clarity in minutes.</span>
                 </h1>
                 
                 <p className="mt-6 text-lg sm:text-xl leading-relaxed text-slate-600 max-w-lg">
-                  An intelligent platform to help you understand your child's symptoms and explore clinical pathways without the confusion.
+                  An intelligent platform to help you understand your child&apos;s symptoms and explore clinical pathways without the confusion.
                 </p>
                 
                 <div className="mt-10 flex flex-col sm:flex-row items-center gap-4">
                   <div className="flex flex-col items-center sm:items-start w-full sm:w-auto">
                     <Button size="lg" style={{ backgroundColor: '#2563eb', color: 'white' }} className="rounded-full w-full sm:w-auto h-14 px-8 text-base font-bold shadow-lg hover:opacity-90 transition-opacity" asChild>
                       <Link href="/signup">
-                        Check your child's symptoms
+                        Check your child&apos;s symptoms
                       </Link>
                     </Button>
                     <p className="mt-3 text-xs text-slate-500 font-medium">Takes 2–3 minutes. Quick, secure signup.</p>
@@ -100,7 +100,7 @@ export default function Home() {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <ScrollReveal className="text-center max-w-3xl mx-auto mb-10">
               <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-slate-900">
-                You shouldn't have to navigate this alone.
+                You shouldn&apos;t have to navigate this alone.
               </h2>
               <p className="mt-4 text-lg text-slate-600">
                 Finding out your child might be struggling is overwhelming. The internet makes it worse.
@@ -112,7 +112,7 @@ export default function Home() {
                 <div className="h-10 w-10 bg-red-50 rounded-full flex items-center justify-center mb-4">
                   <Heart className="h-5 w-5 text-red-400" />
                 </div>
-                <p className="text-lg font-bold text-slate-900 italic">"My child isn't speaking yet."</p>
+                <p className="text-lg font-bold text-slate-900 italic">&quot;My child isn&apos;t speaking yet.&quot;</p>
                 <p className="mt-2 text-slate-600 leading-relaxed text-sm">
                   Every child develops differently, but the anxiety of not knowing if something is wrong keeps you awake at night.
                 </p>
@@ -122,7 +122,7 @@ export default function Home() {
                 <div className="h-10 w-10 bg-amber-50 rounded-full flex items-center justify-center mb-4">
                   <FileText className="h-5 w-5 text-amber-500" />
                 </div>
-                <p className="text-lg font-bold text-slate-900 italic">"Google is terrifying."</p>
+                <p className="text-lg font-bold text-slate-900 italic">&quot;Google is terrifying.&quot;</p>
                 <p className="mt-2 text-slate-600 leading-relaxed text-sm">
                   Searching for symptoms gives you a thousand conflicting, terrifying answers that don't apply to your situation.
                 </p>
@@ -132,7 +132,7 @@ export default function Home() {
                 <div className="h-10 w-10 bg-blue-50 rounded-full flex items-center justify-center mb-4">
                   <Clock className="h-5 w-5 text-blue-500" />
                 </div>
-                <p className="text-lg font-bold text-slate-900 italic">"The waiting lists are long."</p>
+                <p className="text-lg font-bold text-slate-900 italic">&quot;The waiting lists are long.&quot;</p>
                 <p className="mt-2 text-slate-600 leading-relaxed text-sm">
                   You finally decide to seek help, only to find out there is a massive wait just for an initial clinical consultation.
                 </p>
@@ -156,7 +156,7 @@ export default function Home() {
               <div className="text-center bg-slate-50 border border-slate-200 rounded-2xl p-6 md:p-10 shadow-sm transition-all hover:shadow-md">
                 <div className="mx-auto h-16 w-16 rounded-full bg-blue-100 flex items-center justify-center text-2xl font-extrabold text-blue-600 mb-6 shadow-sm">1</div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3">Guided Questions</h3>
-                <p className="text-slate-600 text-sm leading-relaxed">Answer a few simple, conversational questions about your child's behaviors in a safe, private space.</p>
+                <p className="text-slate-600 text-sm leading-relaxed">Answer a few simple, conversational questions about your child&apos;s behaviors in a safe, private space.</p>
               </div>
 
               <div className="text-center bg-slate-50 border border-slate-200 rounded-2xl p-6 md:p-10 shadow-sm transition-all hover:shadow-md">
@@ -234,11 +234,11 @@ export default function Home() {
                     Early intervention matters.
                   </h2>
                   <p style={{ color: '#cbd5e1' }} className="text-base sm:text-lg max-w-xl mx-auto mb-8">
-                    Delays in action can impact outcomes. The sooner you understand what your child needs, the faster they can start thriving.
+                    Delays in action can impact outcomes. The sooner you understand what your child needs, the faster they can start thriving. Don&apos;t wait and worry.
                   </p>
                   <div className="flex flex-col items-center justify-center w-full sm:w-auto">
                     <Button size="lg" style={{ backgroundColor: '#2563eb', color: 'white', border: 'none' }} className="rounded-full h-12 px-8 text-base font-bold shadow-lg hover:opacity-90 transition-opacity w-full sm:w-auto" asChild>
-                      <Link href="/signup">Check your child's symptoms now</Link>
+                      <Link href="/signup">Check your child&apos;s symptoms now</Link>
                     </Button>
                     <p className="mt-4 text-sm text-slate-400 font-medium">Private. Secure. Takes minutes.</p>
                   </div>
