@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, Mail, MapPin } from "lucide-react";
+import { ArrowLeft, Mail, MapPin, Phone } from "lucide-react";
 import { Logo } from "@/components/logo";
 
 export default function ContactPage() {
@@ -24,7 +24,14 @@ export default function ContactPage() {
             <div className="h-10 w-10 bg-blue-100 text-blue-600 flex items-center justify-center rounded-full">
               <Mail className="h-5 w-5" />
             </div>
-            <span>support@careclarity.in</span>
+            <a href="mailto:hetlaheri1@gmail.com" className="hover:text-blue-600 transition-colors">hetlaheri1@gmail.com</a>
+          </div>
+
+          <div className="flex items-center gap-4 text-slate-900 font-medium">
+            <div className="h-10 w-10 bg-blue-100 text-blue-600 flex items-center justify-center rounded-full">
+              <Phone className="h-5 w-5" />
+            </div>
+            <a href="tel:+919137344080" className="hover:text-blue-600 transition-colors">+91 91373 44080</a>
           </div>
 
           <div className="flex items-center gap-4 text-slate-900 font-medium">

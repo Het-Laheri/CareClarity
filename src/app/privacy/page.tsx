@@ -17,21 +17,46 @@ export default function PrivacyPage() {
         <h1 className="text-4xl font-extrabold text-slate-900 mb-8">Privacy Policy</h1>
         <div className="prose prose-slate max-w-none text-slate-600 leading-relaxed space-y-6">
           <p><strong>Last Updated: {new Date().toLocaleDateString()}</strong></p>
+          
+          <p>CareClarity ("we", "us", or "our") respects your privacy and is committed to protecting it through our compliance with this Privacy Policy. This policy describes the types of information we may collect from you or that you may provide when you visit the website careclarity.in (our "Website") and our practices for collecting, using, maintaining, protecting, and disclosing that information, in accordance with applicable Indian laws including the Information Technology Act, 2000.</p>
+
+          <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">1. Information We Collect About You</h2>
+          <p>We collect several types of information from and about users of our Website, including:</p>
+          <ul className="list-disc pl-6 space-y-2">
+            <li><strong>Personal Information:</strong> Name, email address (e.g. hetlaheri1@gmail.com), phone number (e.g. +91 9137344080), and account authentication details via Google Firebase Auth.</li>
+            <li><strong>Health Data (Informational):</strong> Inputs you provide regarding your child's age, behaviors, and developmental milestones to operate the AI symptom guidance tool. This data is strictly used to provide localized informational mapping.</li>
+            <li><strong>Usage Details:</strong> IP addresses, browser types, operating systems, and details of your visits to our Website including location data and communication data.</li>
+          </ul>
+
+          <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">2. How We Use Your Information</h2>
+          <p>We use information that we collect about you or that you provide to us, including any personal information:</p>
+          <ul className="list-disc pl-6 space-y-2">
+            <li>To present our Website and its educational content to you.</li>
+            <li>To match symptoms and developmental inputs to locally relevant clinical pathways and specialists.</li>
+            <li>To carry out our obligations and enforce our rights arising from any contracts entered into between you and us.</li>
+            <li>To notify you about changes to our Website or any products or services we offer or provide though it.</li>
+          </ul>
+
+          <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">3. Data Security and Third Parties</h2>
           <p>
-            At CareClarity, we understand that information regarding your child's health and development is deeply sensitive. We are committed to maintaining the highest standard of data privacy and security.
+            We implement measures designed to secure your personal information from accidental loss and from unauthorized access, use, alteration, and disclosure. All information you provide to us is stored on secure cloud servers behind firewalls managed by Google Firebase.
           </p>
-          <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">1. Data Security</h2>
           <p>
-            All information processed through our assessment chats, symptom checkers, and platform interfaces is encrypted. We do not sell user data to advertising third parties.
+            We <strong>do not sell</strong> your personal or health data to third-party marketers or advertisers. We process AI queries securely, and conversational data is explicitly segregated from identifiable contact information where technically feasible.
           </p>
-          <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">2. Firebase Authentication</h2>
+
+          <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">4. Compliance and Disclaimers</h2>
           <p>
-            We use Firebase Authentication to securely manage parent accounts. Your password and secure credentials are encrypted and stored directly with Google Cloud servers; CareClarity administrators do not have access to your passwords.
+            The tools provide informational frameworks based on established pediatric guidelines. This data is expressly not recorded as a legally binding Electronic Medical Record (EMR).
           </p>
-          <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">3. Medical Information</h2>
-          <p>
-            Any guidance derived from our systems is educational. Information provided does not constitute a formal diagnosis, and we do not maintain HIPAA-compliant permanent electronic medical records (EMR). Always consult a doctor directly.
-          </p>
+
+          <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">5. Contact Information</h2>
+          <p>To ask questions or comment about this privacy policy and our privacy practices, contact us at:</p>
+          <div className="bg-slate-50 p-6 rounded-xl mt-4">
+            <p><strong>Email:</strong> hetlaheri1@gmail.com</p>
+            <p><strong>Phone:</strong> +91 91373 44080</p>
+            <p><strong>Location:</strong> Mumbai, India</p>
+          </div>
         </div>
       </main>
     </div>
