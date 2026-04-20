@@ -226,34 +226,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── 7. Social Proof ── */}
-        <section className="py-20 lg:py-28 bg-white">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <ScrollReveal className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
-                Families finding peace of mind
-              </h2>
-            </ScrollReveal>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm">
-                <div className="flex text-amber-400 mb-4">{'★'.repeat(5)}</div>
-                <p className="text-slate-700 italic mb-6">"I was panicking because my son wouldn't make eye contact. CareClarity explained Sensory Processing gently without scaring me, and matched me with an amazing OT in my area within 48 hours."</p>
-                <div className="font-semibold text-slate-900">— Priya S., Mumbai</div>
-              </div>
-              <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm">
-                <div className="flex text-amber-400 mb-4">{'★'.repeat(5)}</div>
-                <p className="text-slate-700 italic mb-6">"The sheer amount of information on the internet is paralyzing. Using the Chat feature felt like finally talking to a doctor who had time to sit down and just listen to me."</p>
-                <div className="font-semibold text-slate-900">— Amit K., Bengaluru</div>
-              </div>
-              <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm">
-                <div className="flex text-amber-400 mb-4">{'★'.repeat(5)}</div>
-                <p className="text-slate-700 italic mb-6">"I didn't know anything about my rights under the RPWD Act until this platform guided me. Highly recommend for any parent who feels completely lost."</p>
-                <div className="font-semibold text-slate-900">— Anjali R., Delhi</div>
-              </div>
-            </div>
-          </div>
-        </section>
+
 
         {/* ── 8. Final CTA ── */}
         <ScrollReveal>
