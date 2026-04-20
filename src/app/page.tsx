@@ -51,13 +51,15 @@ export default function Home() {
                   An intelligent platform to help you understand your child's symptoms and explore clinical pathways without the confusion.
                 </p>
                 
-                <div className="mt-10 flex flex-col sm:flex-row items-center gap-5">
-                  <Button size="lg" style={{ backgroundColor: '#2563eb', color: 'white' }} className="rounded-full w-full sm:w-auto h-14 px-8 text-base font-bold shadow-lg hover:opacity-90 transition-opacity" asChild>
-                    <Link href="/signup">
-                      Check your child's symptoms
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </Link>
-                  </Button>
+                <div className="mt-10 flex flex-col sm:flex-row items-center gap-4">
+                  <div className="flex flex-col items-center sm:items-start w-full sm:w-auto">
+                    <Button size="lg" style={{ backgroundColor: '#2563eb', color: 'white' }} className="rounded-full w-full sm:w-auto h-14 px-8 text-base font-bold shadow-lg hover:opacity-90 transition-opacity" asChild>
+                      <Link href="/signup">
+                        Check your child's symptoms
+                      </Link>
+                    </Button>
+                    <p className="mt-3 text-xs text-slate-500 font-medium">Takes 2–3 minutes. No signup required.</p>
+                  </div>
                 </div>
               </ScrollReveal>
 
@@ -68,6 +70,30 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* ── 2. Trust Bar ── */}
+        <ScrollReveal duration={0.8}>
+          <section className="py-8 bg-white border-y border-slate-100">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 text-center">
+                <div className="flex items-center gap-2">
+                  <Shield className="h-5 w-5 text-blue-500" />
+                  <p className="font-semibold text-slate-700">100% Private & Secure</p>
+                </div>
+                <div className="hidden md:block w-px h-6 bg-slate-200" />
+                <div className="flex items-center gap-2">
+                  <Heart className="h-5 w-5 text-blue-500" />
+                  <p className="font-semibold text-slate-700">Built for Indian families</p>
+                </div>
+                <div className="hidden md:block w-px h-6 bg-slate-200" />
+                <div className="flex items-center gap-2">
+                  <FileText className="h-5 w-5 text-emerald-500" />
+                  <p className="font-semibold text-slate-700">Clinically reviewed frameworks</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </ScrollReveal>
 
         {/* ── 3. Problem Section (Emotional Hook) ── */}
         <section className="py-16 lg:py-20 bg-slate-50">
@@ -205,14 +231,17 @@ export default function Home() {
               >
                 <div className="relative z-10">
                   <h2 style={{ color: 'white' }} className="text-2xl sm:text-3xl font-bold tracking-tight mb-4">
-                    Early intervention changes lives.
+                    Early intervention matters.
                   </h2>
                   <p style={{ color: '#cbd5e1' }} className="text-base sm:text-lg max-w-xl mx-auto mb-8">
-                    The sooner you understand what your child needs, the faster they can start thriving. Don't wait and worry.
+                    Delays in action can impact outcomes. The sooner you understand what your child needs, the faster they can start thriving.
                   </p>
-                  <Button size="lg" style={{ backgroundColor: '#2563eb', color: 'white', border: 'none' }} className="rounded-full h-12 px-8 text-base font-bold shadow-lg hover:opacity-90 transition-opacity w-full sm:w-auto" asChild>
-                    <Link href="/signup">Check your child's symptoms now</Link>
-                  </Button>
+                  <div className="flex flex-col items-center justify-center w-full sm:w-auto">
+                    <Button size="lg" style={{ backgroundColor: '#2563eb', color: 'white', border: 'none' }} className="rounded-full h-12 px-8 text-base font-bold shadow-lg hover:opacity-90 transition-opacity w-full sm:w-auto" asChild>
+                      <Link href="/signup">Check your child's symptoms now</Link>
+                    </Button>
+                    <p className="mt-4 text-sm text-slate-400 font-medium">Private. Secure. Takes minutes.</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -224,11 +253,27 @@ export default function Home() {
       {/* ── 9. Footer ── */}
       <footer className="bg-slate-50 border-t border-slate-200 py-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col items-center justify-between gap-4 md:flex-row mb-6">
-            <Logo />
-            <p className="text-sm text-slate-500 font-medium">
-              Supporting Indian families through clarity.
-            </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-8">
+            <div className="md:col-span-1">
+              <Logo />
+              <p className="mt-4 text-sm text-slate-500 font-medium leading-relaxed">
+                Supporting Indian families through clarity.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-bold text-slate-900 mb-4">Platform</h4>
+              <ul className="space-y-3 text-sm text-slate-600">
+                <li><Link href="/about" className="hover:text-blue-600 transition-colors">About</Link></li>
+                <li><Link href="/contact" className="hover:text-blue-600 transition-colors">Contact</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold text-slate-900 mb-4">Legal & Privacy</h4>
+              <ul className="space-y-3 text-sm text-slate-600">
+                <li><Link href="/privacy" className="hover:text-blue-600 transition-colors">Privacy Policy</Link></li>
+                <li><Link href="/terms" className="hover:text-blue-600 transition-colors">Terms of Service</Link></li>
+              </ul>
+            </div>
           </div>
           <div className="border-t border-slate-200 pt-6 text-center text-xs sm:text-sm text-slate-500 font-medium">
             <p>CareClarity provides informational guidance powered by verified clinical frameworks. We do not diagnose. Always consult directly with a qualified healthcare professional.</p>
