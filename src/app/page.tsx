@@ -1,30 +1,26 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Bot, Stethoscope, Users, Shield, Sparkles } from "lucide-react";
+import { ArrowRight, Stethoscope, Users, Shield, Heart, FileText, MapPin, CheckCircle, Clock } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { MobileNav } from "@/components/mobile-nav";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { MockAgentChat } from "@/components/ui/mock-agent-chat";
-import { AnimatedBento } from "@/components/ui/animated-bento";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col bg-background selection:bg-primary/20 selection:text-primary relative overflow-hidden">
+    <div className="flex min-h-screen flex-col bg-white selection:bg-blue-100 selection:text-blue-900 overflow-hidden font-sans">
       
-      {/* ── Ambient Hero Gradients (Glassmorphic vibe) ── */}
-      <div className="absolute top-0 -left-1/4 w-[150%] h-[800px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-100/40 via-background to-background -z-10" />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-purple-100/30 to-transparent -z-10 blur-3xl opacity-60" />
-
-      <header className="sticky top-0 z-50 bg-background/60 backdrop-blur-2xl border-b border-border/40">
+      {/* ── Navbar ── */}
+      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 sm:h-20 items-center justify-between">
             <Logo />
             <div className="hidden md:flex items-center space-x-6">
-              <Button variant="ghost" size="sm" className="font-semibold" asChild>
+              <Button variant="ghost" size="sm" className="font-semibold text-slate-600 hover:text-slate-900" asChild>
                 <Link href="/login">Log in</Link>
               </Button>
-              <Button size="sm" className="rounded-full font-semibold px-6 shadow-sm" asChild>
-                <Link href="/signup">Get Started</Link>
+              <Button size="sm" className="rounded-full font-semibold px-6 shadow-sm bg-blue-600 hover:bg-blue-700 text-white" asChild>
+                <Link href="/signup">Check Symptoms</Link>
               </Button>
             </div>
             <MobileNav />
@@ -34,161 +30,248 @@ export default function Home() {
 
       <main id="main-content" className="flex-grow">
         
-        {/* ── Hero Section ── */}
-        <section className="py-20 sm:py-28 lg:py-36">
+        {/* ── 1. Hero Section ── */}
+        <section className="relative py-20 sm:py-28 lg:py-32 bg-gradient-to-b from-blue-50/50 to-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 items-center">
               
               <ScrollReveal direction="up" duration={0.8} className="max-w-2xl lg:max-w-none">
-                <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-background/50 backdrop-blur max-w-fit px-4 py-1.5 text-sm font-semibold text-primary mb-6 shadow-sm">
-                  <Sparkles className="h-4 w-4" />
-                  Next-Generation Caregiver Copilot
+                <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50/50 px-4 py-1.5 text-sm font-semibold text-blue-800 mb-6 shadow-sm">
+                  <Shield className="h-4 w-4" />
+                  Private, Secure, & Clinically Grounded
                 </div>
                 
-                <h1 className="font-headline text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tighter text-foreground leading-[1.1]">
-                  Clarity for your <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500">child's journey.</span>
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
+                  Worried about your child's development?<br />
+                  <span className="text-blue-600">Get clarity in minutes.</span>
                 </h1>
                 
-                <p className="mt-6 text-lg sm:text-xl leading-relaxed text-muted-foreground opacity-90 max-w-lg">
-                  A highly intelligent, empathetic platform connecting Indian families navigating neurodevelopmental conditions with clinically-backed answers and verified specialists.
+                <p className="mt-6 text-lg sm:text-xl leading-relaxed text-slate-600 max-w-lg">
+                  An AI-powered platform that helps Indian parents understand their child's symptoms and connects them to the right specialists, faster.
                 </p>
                 
                 <div className="mt-10 flex flex-col sm:flex-row items-center gap-5">
-                  <Button size="lg" className="rounded-full w-full sm:w-auto h-14 px-8 text-base shadow-lg shadow-primary/20 hover:shadow-xl transition-shadow group" asChild>
+                  <Button size="lg" className="rounded-full w-full sm:w-auto h-14 px-8 text-base font-bold shadow-lg shadow-blue-500/20 bg-blue-600 hover:bg-blue-700 hover:shadow-xl transition-all" asChild>
                     <Link href="/signup">
-                      Start your journey
-                      <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                      Check your child's symptoms
+                      <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>
                   </Button>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground font-medium w-full sm:w-auto justify-center">
-                    <Shield className="h-4 w-4 text-emerald-500" />
-                    Medical-grade privacy
-                  </div>
                 </div>
               </ScrollReveal>
 
-              <ScrollReveal direction="up" delay={0.2} duration={0.8}>
-                <div className="relative group">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent blur-3xl opacity-50 group-hover:opacity-70 transition-opacity" />
-                  <MockAgentChat />
-                </div>
+              <ScrollReveal direction="up" delay={0.2} duration={0.8} className="lg:pl-10">
+                 <MockAgentChat />
               </ScrollReveal>
               
             </div>
           </div>
         </section>
 
-        {/* ── Stats Section ── */}
+        {/* ── 2. Trust Bar ── */}
         <ScrollReveal duration={0.8}>
-          <section className="relative z-10 py-10 bg-gradient-to-b from-background to-muted/30 border-y border-border/50">
+          <section className="py-8 bg-white border-y border-slate-100">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-border/50">
-                <div className="px-4">
-                  <p className="text-4xl font-bold tracking-tighter text-foreground">2.4k+</p>
-                  <p className="text-sm font-semibold text-muted-foreground mt-2 tracking-wide uppercase">Active Caregivers</p>
+              <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 text-center">
+                <div className="flex items-center gap-2">
+                  <Users className="h-5 w-5 text-blue-500" />
+                  <p className="font-semibold text-slate-700">Trusted by <span className="font-bold text-slate-900">2,000+</span> parents</p>
                 </div>
-                <div className="px-4">
-                  <p className="text-4xl font-bold tracking-tighter text-foreground">0ms</p>
-                  <p className="text-sm font-semibold text-muted-foreground mt-2 tracking-wide uppercase">Edge Latency</p>
+                <div className="hidden md:block w-px h-6 bg-slate-200" />
+                <div className="flex items-center gap-2">
+                  <Stethoscope className="h-5 w-5 text-blue-500" />
+                  <p className="font-semibold text-slate-700"><span className="font-bold text-slate-900">140+</span> verified pediatric specialists</p>
                 </div>
-                <div className="px-4">
-                  <p className="text-4xl font-bold tracking-tighter text-foreground">140+</p>
-                  <p className="text-sm font-semibold text-muted-foreground mt-2 tracking-wide uppercase">Verified Doctors</p>
-                </div>
-                <div className="px-4">
-                  <p className="text-4xl font-bold tracking-tighter text-foreground">24/7</p>
-                  <p className="text-sm font-semibold text-muted-foreground mt-2 tracking-wide uppercase">Always Online</p>
+                <div className="hidden md:block w-px h-6 bg-slate-200" />
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="h-5 w-5 text-emerald-500" />
+                  <p className="font-semibold text-slate-700">Clinically reviewed pathways</p>
                 </div>
               </div>
             </div>
           </section>
         </ScrollReveal>
 
-        {/* ── Asymmetrical Bento Features ── */}
-        <section className="py-24 lg:py-32 relative">
-          {/* subtle mesh */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none -z-10" />
-          
+        {/* ── 3. Problem Section (Emotional Hook) ── */}
+        <section className="py-20 lg:py-28 bg-slate-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <ScrollReveal className="text-center max-w-3xl mx-auto mb-16 lg:mb-24">
-              <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter text-foreground">
-                Engineered for specialized care.
+            <ScrollReveal className="text-center max-w-3xl mx-auto mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
+                You shouldn't have to navigate this alone.
               </h2>
-              <p className="mt-5 text-lg text-muted-foreground">
-                Ditch the generic parenting blogs. CareClarity was architected from the ground up to solve the actual bottlenecks families face.
+              <p className="mt-4 text-lg text-slate-600">
+                Finding out your child might be struggling is overwhelming. The internet makes it worse.
               </p>
             </ScrollReveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-6 md:grid-rows-2 gap-6 h-auto md:h-[600px]">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              <ScrollReveal delay={0.1} className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                <div className="h-12 w-12 bg-red-50 rounded-full flex items-center justify-center mb-6">
+                  <Heart className="h-6 w-6 text-red-400" />
+                </div>
+                <p className="text-xl font-bold text-slate-900 italic">"My child isn't speaking yet."</p>
+                <p className="mt-4 text-slate-600 leading-relaxed">
+                  Every child develops differently, but the anxiety of not knowing if something is wrong keeps you awake at night.
+                </p>
+              </ScrollReveal>
               
-              {/* Box 1 (Large left) */}
-              <AnimatedBento delay={0.1} className="md:col-span-4 md:row-span-2 bg-gradient-to-br from-background to-indigo-50/30">
-                <div className="h-14 w-14 rounded-2xl bg-indigo-500/10 flex items-center justify-center border border-indigo-500/20 mb-6 group-hover:scale-110 transition-transform">
-                  <Bot className="h-7 w-7 text-indigo-600" />
+              <ScrollReveal delay={0.2} className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                <div className="h-12 w-12 bg-amber-50 rounded-full flex items-center justify-center mb-6">
+                  <FileText className="h-6 w-6 text-amber-500" />
                 </div>
-                <h3 className="text-2xl font-bold tracking-tight mb-3">Self-Healing Agentic AI</h3>
-                <p className="text-muted-foreground text-lg leading-relaxed max-w-md">
-                  Powered by Llama 3.3 and a deterministic Lexical Information Retrieval (IR) graph. The Wellness Hub analyzes complex symptoms using strict clinical parameters before ever generating a letter.
+                <p className="text-xl font-bold text-slate-900 italic">"Google is terrifying."</p>
+                <p className="mt-4 text-slate-600 leading-relaxed">
+                  Searching for symptoms gives you a thousand conflicting, terrifying answers that don't apply to your situation.
                 </p>
-                <div className="mt-auto pt-10">
-                  <div className="p-4 rounded-xl bg-background border shadow-sm flex items-center gap-4 w-fit">
-                    <span className="relative flex h-3 w-3">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
-                    </span>
-                    <span className="text-sm font-semibold">Native Cloud Search Operational</span>
-                  </div>
-                </div>
-              </AnimatedBento>
+              </ScrollReveal>
 
-              {/* Box 2 (Top right) */}
-              <AnimatedBento delay={0.2} className="md:col-span-2 md:row-span-1 border-t-4 border-t-purple-400">
-                <div className="h-12 w-12 rounded-xl bg-purple-500/10 flex items-center justify-center mb-4 group-hover:-rotate-12 transition-transform">
-                  <Users className="h-6 w-6 text-purple-600" />
+              <ScrollReveal delay={0.3} className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                <div className="h-12 w-12 bg-blue-50 rounded-full flex items-center justify-center mb-6">
+                  <Clock className="h-6 w-6 text-blue-500" />
                 </div>
-                <h3 className="text-xl font-bold tracking-tight mb-2">Resource Ecosystem</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  Thousands of structured articles specifically matching Indian local laws, therapy rights (RPWD Act), and early intervention tactics.
+                <p className="text-xl font-bold text-slate-900 italic">"The waiting lists are months long."</p>
+                <p className="mt-4 text-slate-600 leading-relaxed">
+                  You finally decide to see a specialist, only to find out there is a 6-month wait just for an initial consultation.
                 </p>
-              </AnimatedBento>
-
-              {/* Box 3 (Bottom right) */}
-              <AnimatedBento delay={0.3} className="md:col-span-2 md:row-span-1 border-t-4 border-t-blue-400">
-                <div className="h-12 w-12 rounded-xl bg-blue-500/10 flex items-center justify-center mb-4 group-hover:rotate-12 transition-transform">
-                  <Stethoscope className="h-6 w-6 text-blue-600" />
-                </div>
-                <h3 className="text-xl font-bold tracking-tight mb-2">Verified Specialists</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  A high-speed recommendation flow. No more relying on word of mouth; connect with local clinics structured dynamically around availability.
-                </p>
-              </AnimatedBento>
-
+              </ScrollReveal>
             </div>
           </div>
         </section>
 
-        {/* ── CTA Banner ── */}
+        {/* ── 4. Solution (How it works) ── */}
+        <section className="py-20 lg:py-28 bg-white">
+           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <ScrollReveal className="text-center max-w-3xl mx-auto mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
+                A clear path forward in 3 simple steps
+              </h2>
+            </ScrollReveal>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-4xl mx-auto relative">
+              <div className="hidden md:block absolute top-12 left-[15%] right-[15%] h-0.5 bg-slate-100 -z-10" />
+              
+              <div className="text-center bg-white">
+                <div className="mx-auto h-24 w-24 rounded-full bg-blue-50 flex items-center justify-center text-3xl font-extrabold text-blue-600 mb-6 shadow-sm border border-blue-100">1</div>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Guided Questions</h3>
+                <p className="text-slate-600">Answer a few simple, conversational questions about your child's behaviors in a safe, private space.</p>
+              </div>
+
+              <div className="text-center bg-white">
+                <div className="mx-auto h-24 w-24 rounded-full bg-blue-50 flex items-center justify-center text-3xl font-extrabold text-blue-600 mb-6 shadow-sm border border-blue-100">2</div>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Understand Symptoms</h3>
+                <p className="text-slate-600">Get warm, intelligent insights mapping your concerns to clinical frameworks, instantly.</p>
+              </div>
+
+              <div className="text-center bg-white">
+                <div className="mx-auto h-24 w-24 rounded-full bg-blue-50 flex items-center justify-center text-3xl font-extrabold text-blue-600 mb-6 shadow-sm border border-blue-100">3</div>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Connect Locally</h3>
+                <p className="text-slate-600">We match you with verified, available speech therapists and occupational experts in your city.</p>
+              </div>
+            </div>
+           </div>
+        </section>
+
+        {/* ── 6. Features -> Benefits ── */}
+        <section className="py-20 lg:py-28 bg-slate-50 border-t border-slate-100">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+              <ScrollReveal>
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0 mt-1 h-12 w-12 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center">
+                    <Heart className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-2">Understand symptoms clearly</h3>
+                    <p className="text-slate-600 leading-relaxed">Stop guessing. We translate complex medical jargon into simple, supportive language so you know exactly what is happening with your child's development.</p>
+                  </div>
+                </div>
+              </ScrollReveal>
+              
+              <ScrollReveal delay={0.1}>
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0 mt-1 h-12 w-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center">
+                    <MapPin className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-2">Fast access, no waiting months</h3>
+                    <p className="text-slate-600 leading-relaxed">Don't wait six months for an initial diagnostic appointment. Our directory connects you with available, highly-rated specialists who can see you sooner.</p>
+                  </div>
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal delay={0.2}>
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0 mt-1 h-12 w-12 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center">
+                    <FileText className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-2">India-specific guidance</h3>
+                    <p className="text-slate-600 leading-relaxed">The healthcare system here is unique. We provide specific guidance on your legal rights under the RPWD Act and navigate you through standard Indian schooling boards.</p>
+                  </div>
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal delay={0.3}>
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0 mt-1 h-12 w-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center">
+                    <Shield className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-2">Verified, trustworthy specialists</h3>
+                    <p className="text-slate-600 leading-relaxed">Every professional on our platform is strictly verified. You connect only with RCI-registered clinical psychologists, certified therapists, and established pediatricians.</p>
+                  </div>
+                </div>
+              </ScrollReveal>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 7. Social Proof ── */}
+        <section className="py-20 lg:py-28 bg-white">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <ScrollReveal className="text-center max-w-3xl mx-auto mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
+                Families finding peace of mind
+              </h2>
+            </ScrollReveal>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm">
+                <div className="flex text-amber-400 mb-4">{'★'.repeat(5)}</div>
+                <p className="text-slate-700 italic mb-6">"I was panicking because my son wouldn't make eye contact. CareClarity explained Sensory Processing gently without scaring me, and matched me with an amazing OT in my area within 48 hours."</p>
+                <div className="font-semibold text-slate-900">— Priya S., Mumbai</div>
+              </div>
+              <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm">
+                <div className="flex text-amber-400 mb-4">{'★'.repeat(5)}</div>
+                <p className="text-slate-700 italic mb-6">"The sheer amount of information on the internet is paralyzing. Using the Chat feature felt like finally talking to a doctor who had time to sit down and just listen to me."</p>
+                <div className="font-semibold text-slate-900">— Amit K., Bengaluru</div>
+              </div>
+              <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm">
+                <div className="flex text-amber-400 mb-4">{'★'.repeat(5)}</div>
+                <p className="text-slate-700 italic mb-6">"I didn't know anything about my rights under the RPWD Act until this platform guided me. Highly recommend for any parent who feels completely lost."</p>
+                <div className="font-semibold text-slate-900">— Anjali R., Delhi</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 8. Final CTA ── */}
         <ScrollReveal>
-          <section className="py-20 lg:py-32">
+          <section className="py-20 lg:py-28">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="relative rounded-3xl overflow-hidden bg-primary px-6 py-16 sm:px-12 sm:py-24 text-center shadow-2xl">
-                {/* Decorative radial gradients on CTA */}
-                <div className="absolute top-0 -left-1/4 w-[150%] h-[150%] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/20 to-transparent blur-3xl pointer-events-none" />
-                
-                <h2 className="relative font-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter text-primary-foreground max-w-3xl mx-auto leading-tight">
-                  Start your journey into transparent pediatric care today.
-                </h2>
-                <p className="relative mt-6 text-lg sm:text-xl text-primary-foreground/80 max-w-2xl mx-auto">
-                  Sign up in seconds to access the Wellness Hub and connect with local specialists tailored to your precise demographic.
-                </p>
-                <div className="relative mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <Button size="lg" variant="secondary" className="rounded-full h-14 px-8 text-base font-bold shadow-xl w-full sm:w-auto" asChild>
-                    <Link href="/signup">Create Free Profile</Link>
-                  </Button>
-                  <Button size="lg" variant="outline" className="rounded-full h-14 px-8 text-base font-bold border-primary-foreground/30 text-primary-foreground hover:bg-white/10 w-full sm:w-auto backdrop-blur-sm" asChild>
-                    <Link href="/login">Sign In</Link>
-                  </Button>
+              <div className="rounded-[2.5rem] bg-blue-600 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-opacity-50 px-6 py-16 sm:px-12 sm:py-24 text-center shadow-xl max-w-5xl mx-auto relative overflow-hidden">
+                <div className="relative z-10">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white max-w-3xl mx-auto leading-tight">
+                    Early intervention changes lives.
+                  </h2>
+                  <p className="mt-6 text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto font-medium">
+                    The sooner you understand what your child needs, the faster they can start thriving. Don't wait and worry.
+                  </p>
+                  <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <Button size="lg" className="rounded-full h-14 px-10 text-lg font-bold bg-white text-blue-600 hover:bg-slate-50 w-full sm:w-auto shadow-lg" asChild>
+                      <Link href="/signup">Check your child's symptoms now</Link>
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -197,9 +280,42 @@ export default function Home() {
         
       </main>
 
-      <footer className="bg-background border-t py-12">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-muted-foreground font-medium">
-          <p>© {new Date().getFullYear()} CareClarity Systems. Developed for India.</p>
+      {/* ── 9. Footer ── */}
+      <footer className="bg-slate-50 border-t border-slate-200 py-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div className="md:col-span-1">
+              <Logo />
+              <p className="mt-4 text-sm text-slate-500">
+                Supporting Indian families through clarity, community, and clinical connection.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-bold text-slate-900 mb-4">Platform</h4>
+              <ul className="space-y-3 text-sm text-slate-600">
+                <li><Link href="/signup" className="hover:text-blue-600 transition-colors">Start Assessment</Link></li>
+                <li><Link href="/login" className="hover:text-blue-600 transition-colors">Parent Login</Link></li>
+                <li><Link href="/#specialists" className="hover:text-blue-600 transition-colors">For Providers</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold text-slate-900 mb-4">Legal & Privacy</h4>
+              <ul className="space-y-3 text-sm text-slate-600">
+                <li><Link href="/#privacy" className="hover:text-blue-600 transition-colors">Privacy Policy</Link></li>
+                <li><Link href="/#terms" className="hover:text-blue-600 transition-colors">Terms of Service</Link></li>
+                <li><Link href="/#data" className="hover:text-blue-600 transition-colors">Data Security</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold text-slate-900 mb-4">Medical Disclaimer</h4>
+              <p className="text-xs text-slate-500 leading-relaxed">
+                CareClarity provides informational guidance powered by verified clinical frameworks. We do not provide medical diagnoses. Always consult directly with a qualified healthcare professional regarding any medical concerns about your child.
+              </p>
+            </div>
+          </div>
+          <div className="mt-16 pt-8 border-t border-slate-200 text-center text-sm text-slate-500 font-medium">
+            <p>© {new Date().getFullYear()} CareClarity. Proudly built for India.</p>
+          </div>
         </div>
       </footer>
     </div>
