@@ -21,17 +21,19 @@ export async function GET(
     const { searchParams } = new URL(req.url);
     const date = searchParams.get('date');
 
-    // Try Firestore first, fallback to defaults + in-memory booked slots
+    // Combine booked slots from Firestore and in-memory
+    let bookedSlots: string[] = [];
+    let schedule = { doctorId, ...DEFAULT_SCHEDULE };
+
     try {
         const db = getDb();
         // 1. Get schedule config
         const scheduleSnap = await db.collection('doctorSchedules').doc(doctorId).get();
-        const schedule = scheduleSnap.exists
-            ? { doctorId, ...scheduleSnap.data() }
-            : { doctorId, ...DEFAULT_SCHEDULE };
+        if (scheduleSnap.exists) {
+            schedule = { doctorId, ...scheduleSnap.data() as any };
+        }
 
-        // 2. Get booked slots if date is provided
-        let bookedSlots: string[] = [];
+        // 2. Get booked slots from Firestore
         if (date) {
             const bookedSnap = await db.collection('appointments')
                 .where('doctorId', '==', doctorId)
@@ -41,20 +43,19 @@ export async function GET(
 
             bookedSlots = bookedSnap.docs.map(doc => doc.data().timeSlot);
         }
-
-        return NextResponse.json({
-            schedule,
-            bookedSlots,
-        });
     } catch (error) {
-        console.warn('Firestore unavailable for doctor schedule, using defaults + in-memory:', (error as Error).message);
-
-        const schedule = { doctorId, ...DEFAULT_SCHEDULE };
-        const bookedSlots = date ? memGetBookedSlots(doctorId, date) : [];
-
-        return NextResponse.json({
-            schedule,
-            bookedSlots,
-        });
+        console.warn('Firestore error for doctor schedule:', (error as Error).message);
     }
+
+    // 3. Always merge with in-memory booked slots as well
+    if (date) {
+        const memorySlots = memGetBookedSlots(doctorId, date);
+        // De-duplicate slots
+        bookedSlots = Array.from(new Set([...bookedSlots, ...memorySlots]));
+    }
+
+    return NextResponse.json({
+        schedule,
+        bookedSlots,
+    });
 }

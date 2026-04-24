@@ -21,15 +21,9 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
 import { signOut } from 'firebase/auth';
+import { ADMIN_EMAILS } from '@/lib/auth-constants';
 
-const ADMIN_EMAILS = [
-    'admin@careclarity.app',
-    'hetlaheri16@gmail.com',
-    'hetlaheri1@gmail.com',
-    'manojrampal16@gmail.com',
-    'het@careclarity.app',
-    'feature_tester_01@example.com'
-];
+
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
     const { user, loading } = useUser();
@@ -168,7 +162,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 </header>
 
                 <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
-                    <div className="max-w-7xl mx-auto h-full">
+                    <div className="h-full w-full">
                         {children}
                     </div>
                 </main>

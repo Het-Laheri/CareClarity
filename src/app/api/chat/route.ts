@@ -107,7 +107,7 @@ export async function POST(req: Request) {
         const groqMessages: Groq.Chat.ChatCompletionMessageParam[] = [
             { 
                 role: 'system', 
-                content: `${SYSTEM_PROMPT}\n\nUSER LANGUAGE: ${language}\nRespond entirely in ${language}. Use the English resources as your source.`
+                content: `${SYSTEM_PROMPT}\n\nRespond entirely in ${language}. Use the English resources as your source of truth, but translate the information accurately into ${language}.`
             },
             ...messages.map((msg: any) => ({
                 role: (msg.role === 'model' ? 'assistant' : msg.role) as any,

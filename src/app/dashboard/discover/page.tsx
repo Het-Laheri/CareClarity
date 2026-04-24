@@ -46,7 +46,8 @@ export default function DiscoverPage() {
 
   if (loading) {
     return (
-      <div className="flex flex-col gap-6 p-4 md:p-6">
+      <div className="flex-1 overflow-y-auto">
+      <div className="flex flex-col gap-6 p-4 md:p-6 w-full">
         <div>
           <Skeleton className="h-8 w-48" />
           <Skeleton className="mt-2 h-4 w-64" />
@@ -55,12 +56,14 @@ export default function DiscoverPage() {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {[1, 2, 3].map((i) => <Skeleton key={i} className="h-72 rounded-lg" />)}
         </div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col gap-6 p-4 md:p-6">
+    <div className="flex-1 overflow-y-auto">
+    <div className="flex flex-col gap-6 p-4 md:p-6 w-full">
       <div>
         <h1 className="font-headline text-2xl sm:text-3xl font-bold tracking-tight">Discover Doctors</h1>
         <p className="text-sm sm:text-base text-muted-foreground">Find specialists tailored to your needs.</p>
@@ -134,6 +137,7 @@ export default function DiscoverPage() {
           })}
         </div>
       )}
+    </div>
     </div>
   );
 }

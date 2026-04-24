@@ -2,15 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getAuth, getDb } from '@/lib/firebase-admin';
 import { getAuthUser } from '@/lib/auth-server';
 import { memGetAllAppointments } from '@/lib/in-memory-store';
+import { ADMIN_EMAILS } from '@/lib/auth-constants';
 
 export const dynamic = 'force-dynamic';
 
-const ADMIN_EMAILS = [
-    'admin@careclarity.app',
-    'hetlaheri16@gmail.com',
-    'hetlaheri1@gmail.com',
-    'manojrampal16@gmail.com'
-];
+
 
 export async function GET(req: NextRequest) {
     const user = await getAuthUser(req);

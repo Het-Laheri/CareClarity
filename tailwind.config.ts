@@ -20,6 +20,8 @@ export default {
         body: ['Inter', 'sans-serif'],
         headline: ['Lexend', 'sans-serif'],
         code: ['monospace'],
+        sans: ['DM Sans', 'sans-serif'],
+        serif: ['Lora', 'serif'],
       },
       colors: {
         background: 'hsl(var(--background))',

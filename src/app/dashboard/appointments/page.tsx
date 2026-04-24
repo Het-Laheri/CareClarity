@@ -76,7 +76,8 @@ export default function AppointmentsPage() {
     }
 
     return (
-        <div className="flex flex-col gap-8 p-4 md:p-6">
+        <div className="flex-1 overflow-y-auto">
+        <div className="flex flex-col gap-8 p-4 md:p-6 w-full">
             <div>
                 <h1 className="font-headline text-3xl font-bold tracking-tight">
                     My Appointments
@@ -194,6 +195,7 @@ export default function AppointmentsPage() {
                     )}
                 </>
             )}
+        </div>
         </div>
     );
 }

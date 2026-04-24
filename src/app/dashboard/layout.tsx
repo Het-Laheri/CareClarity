@@ -29,9 +29,9 @@ export default function DashboardLayout({
 }) {
   return (
     <AuthGuard>
-      <SidebarProvider>
-        <div className="flex min-h-screen">
-          <Sidebar collapsible="icon">
+      <SidebarProvider className="h-screen w-screen overflow-hidden">
+        <div className="flex h-full w-full">
+          <Sidebar collapsible="icon" className="h-full border-r">
             <SidebarHeader className="p-4">
               <div className="flex items-center justify-between">
                 <Logo href="/dashboard/profile" />
@@ -54,9 +54,9 @@ export default function DashboardLayout({
               </SidebarMenu>
             </SidebarFooter>
           </Sidebar>
-          <SidebarInset className="min-w-0">
+          <SidebarInset className="flex-1 flex flex-col min-w-0 h-full overflow-hidden">
             <Header />
-            <main id="main-content" className="flex-1 flex flex-col h-full w-full relative overflow-hidden">
+            <main id="main-content" className="flex-1 min-h-0 w-full relative">
               {children}
             </main>
           </SidebarInset>

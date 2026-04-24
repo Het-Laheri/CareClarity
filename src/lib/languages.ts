@@ -1,10 +1,4 @@
-export interface Language {
-  code: string;
-  name: string;
-  nativeName: string;
-}
-
-export const languages: Language[] = [
+export const languages = [
   { code: 'en', name: 'English', nativeName: 'English' },
   { code: 'hi', name: 'Hindi', nativeName: 'हिन्दी' },
   { code: 'mr', name: 'Marathi', nativeName: 'मराठी' },
@@ -14,4 +8,5 @@ export const languages: Language[] = [
   { code: 'ml', name: 'Malayalam', nativeName: 'മലയാളം' },
   { code: 'bn', name: 'Bengali', nativeName: 'বাংলা' },
   { code: 'gu', name: 'Gujarati', nativeName: 'ગુજરાતી' },
+  { code: 'pa', name: 'Punjabi', nativeName: 'ਪੰਜਾਬੀ' },
 ];

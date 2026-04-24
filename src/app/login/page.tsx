@@ -200,7 +200,7 @@ export default function LoginPage() {
                     <FormItem>
                       <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <Input placeholder="m@example.com" {...field} />
+                        <Input type="email" placeholder="m@example.com" autoComplete="email" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -218,7 +218,7 @@ export default function LoginPage() {
                         </Link>
                       </div>
                       <FormControl>
-                        <Input type="password" {...field} />
+                        <Input type="password" autoComplete="current-password" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

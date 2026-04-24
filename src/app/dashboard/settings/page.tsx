@@ -27,162 +27,165 @@ export default function SettingsPage() {
 
     if (loading) {
         return (
-            <div className="flex flex-col gap-8 p-4 md:p-6">
-                <div>
-                    <Skeleton className="h-8 w-48" />
-                    <Skeleton className="mt-2 h-4 w-72" />
-                </div>
-                <div className="grid gap-6 md:grid-cols-2">
-                    <Skeleton className="h-64" />
-                    <Skeleton className="h-64" />
+            <div className="flex-1 overflow-y-auto">
+                <div className="flex flex-col gap-8 p-4 md:p-6 w-full">
+                    <div>
+                        <Skeleton className="h-8 w-48" />
+                        <Skeleton className="mt-2 h-4 w-72" />
+                    </div>
+                    <div className="grid gap-6 md:grid-cols-2">
+                        <Skeleton className="h-64" />
+                        <Skeleton className="h-64" />
+                    </div>
                 </div>
             </div>
         );
     }
 
     return (
-        <div className="flex flex-col gap-8 p-4 md:p-6 max-w-4xl">
-            <div>
-                <h1 className="font-headline text-3xl font-bold tracking-tight">
-                    Settings
-                </h1>
-                <p className="text-muted-foreground">
-                    Manage your app preferences and account settings.
-                </p>
-            </div>
+        <div className="flex-1 overflow-y-auto">
+            <div className="flex flex-col gap-8 p-4 md:p-6 w-full">
+                <div>
+                    <h1 className="font-headline text-3xl font-bold tracking-tight">
+                        Settings
+                    </h1>
+                    <p className="text-muted-foreground">
+                        Manage your app preferences and account settings.
+                    </p>
+                </div>
 
-            <div className="grid gap-6">
-                {/* Appearance */}
-                <Card>
-                    <CardHeader>
-                        <div className="flex items-center gap-2">
-                            <Palette className="h-5 w-5 text-primary" />
-                            <CardTitle className="font-headline">Appearance</CardTitle>
-                        </div>
-                        <CardDescription>Customize how CareClarity looks on your device.</CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                        <div className="flex items-center justify-between">
-                            <div className="space-y-0.5">
-                                <Label>Dark Mode</Label>
-                                <p className="text-sm text-muted-foreground">Use the dark theme for reduced eye strain.</p>
+                <div className="grid gap-6">
+                    {/* Appearance */}
+                    <Card>
+                        <CardHeader>
+                            <div className="flex items-center gap-2">
+                                <Palette className="h-5 w-5 text-primary" />
+                                <CardTitle className="font-headline text-xl">Appearance</CardTitle>
                             </div>
-                            <Switch />
-                        </div>
-                        <Separator />
-                        <div className="flex items-center justify-between">
-                            <div className="space-y-0.5">
-                                <Label>Compact View</Label>
-                                <p className="text-sm text-muted-foreground">Reduce spacing for a more compact layout.</p>
+                            <CardDescription>
+                                Customize how CareClarity looks on your device.
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-6">
+                            <div className="flex items-center justify-between">
+                                <div className="space-y-0.5">
+                                    <Label>Dark Mode</Label>
+                                    <p className="text-sm text-muted-foreground">Adjust the interface for low-light environments.</p>
+                                </div>
+                                <Switch disabled />
                             </div>
-                            <Switch />
-                        </div>
-                    </CardContent>
-                </Card>
+                            <Separator />
+                            <div className="space-y-2">
+                                <Label>Font Size</Label>
+                                <Select defaultValue="medium">
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Select size" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="small">Small</SelectItem>
+                                        <SelectItem value="medium">Medium</SelectItem>
+                                        <SelectItem value="large">Large</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                        </CardContent>
+                    </Card>
 
-                {/* Notifications */}
-                <Card>
-                    <CardHeader>
-                        <div className="flex items-center gap-2">
-                            <Bell className="h-5 w-5 text-primary" />
-                            <CardTitle className="font-headline">Notifications</CardTitle>
-                        </div>
-                        <CardDescription>Choose how and when you receive notifications.</CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                        <div className="flex items-center justify-between">
-                            <div className="space-y-0.5">
-                                <Label>Appointment Reminders</Label>
-                                <p className="text-sm text-muted-foreground">Receive reminders before your scheduled appointments.</p>
+                    {/* Notifications */}
+                    <Card>
+                        <CardHeader>
+                            <div className="flex items-center gap-2">
+                                <Bell className="h-5 w-5 text-primary" />
+                                <CardTitle className="font-headline text-xl">Notifications</CardTitle>
                             </div>
-                            <Switch defaultChecked />
-                        </div>
-                        <Separator />
-                        <div className="flex items-center justify-between">
-                            <div className="space-y-0.5">
-                                <Label>Resource Recommendations</Label>
-                                <p className="text-sm text-muted-foreground">Get notified when new resources match your interests.</p>
+                            <CardDescription>
+                                Control how and when you receive updates.
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-6">
+                            <div className="flex items-center justify-between">
+                                <div className="space-y-0.5">
+                                    <Label>Email Notifications</Label>
+                                    <p className="text-sm text-muted-foreground">Receive weekly resource summaries.</p>
+                                </div>
+                                <Switch defaultChecked disabled />
                             </div>
-                            <Switch defaultChecked />
-                        </div>
-                        <Separator />
-                        <div className="space-y-2">
-                            <Label>Reminder Timing</Label>
-                            <Select defaultValue="1h">
-                                <SelectTrigger className="w-[200px]">
-                                    <SelectValue />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="15m">15 minutes before</SelectItem>
-                                    <SelectItem value="30m">30 minutes before</SelectItem>
-                                    <SelectItem value="1h">1 hour before</SelectItem>
-                                    <SelectItem value="1d">1 day before</SelectItem>
-                                </SelectContent>
-                            </Select>
-                        </div>
-                    </CardContent>
-                </Card>
+                            <Separator />
+                            <div className="flex items-center justify-between">
+                                <div className="space-y-0.5">
+                                    <Label>Care Alerts</Label>
+                                    <p className="text-sm text-muted-foreground">Real-time alerts for scheduled appointments.</p>
+                                </div>
+                                <Switch defaultChecked disabled />
+                            </div>
+                        </CardContent>
+                    </Card>
 
-                {/* Privacy & Security */}
-                <Card>
-                    <CardHeader>
-                        <div className="flex items-center gap-2">
-                            <Shield className="h-5 w-5 text-primary" />
-                            <CardTitle className="font-headline">Privacy & Security</CardTitle>
-                        </div>
-                        <CardDescription>Manage your data and security preferences.</CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                        <div className="flex items-center justify-between">
-                            <div className="space-y-0.5">
-                                <Label>Anonymize Data</Label>
-                                <p className="text-sm text-muted-foreground">Anonymize your data in any analytics or usage reports.</p>
+                    {/* Privacy & Security */}
+                    <Card>
+                        <CardHeader>
+                            <div className="flex items-center gap-2">
+                                <Shield className="h-5 w-5 text-primary" />
+                                <CardTitle className="font-headline text-xl">Privacy & Security</CardTitle>
                             </div>
-                            <Switch defaultChecked />
-                        </div>
-                        <Separator />
-                        <div className="flex items-center justify-between">
-                            <div className="space-y-0.5">
-                                <Label>Allow AI Learning</Label>
-                                <p className="text-sm text-muted-foreground">Allow your anonymized queries to improve AI responses.</p>
+                            <CardDescription>
+                                Manage your data and account security.
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-6">
+                            <div className="flex items-center justify-between">
+                                <div className="space-y-0.5">
+                                    <Label>Two-Factor Authentication</Label>
+                                    <p className="text-sm text-muted-foreground">Add an extra layer of security to your account.</p>
+                                </div>
+                                <Button variant="outline" size="sm" disabled>Enable</Button>
                             </div>
-                            <Switch />
-                        </div>
-                    </CardContent>
-                </Card>
+                            <Separator />
+                            <div className="flex items-center justify-between">
+                                <div className="space-y-0.5">
+                                    <Label>Data Usage</Label>
+                                    <p className="text-sm text-muted-foreground">Anonymized sharing to improve AI clinical models.</p>
+                                </div>
+                                <Switch defaultChecked />
+                            </div>
+                        </CardContent>
+                    </Card>
 
-                {/* Danger Zone */}
-                <Card className="border-destructive/50">
-                    <CardHeader>
-                        <div className="flex items-center gap-2">
-                            <AlertTriangle className="h-5 w-5 text-destructive" />
-                            <CardTitle className="font-headline text-destructive">Danger Zone</CardTitle>
-                        </div>
-                        <CardDescription>Irreversible actions for your account.</CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                        <div className="flex items-center justify-between">
-                            <div className="space-y-0.5">
-                                <Label>Sign Out</Label>
-                                <p className="text-sm text-muted-foreground">Sign out of your account on this device.</p>
+                    {/* Danger Zone */}
+                    <Card className="border-destructive/50">
+                        <CardHeader>
+                            <div className="flex items-center gap-2 text-destructive">
+                                <AlertTriangle className="h-5 w-5" />
+                                <CardTitle className="font-headline text-xl">Danger Zone</CardTitle>
                             </div>
-                            <Button variant="outline" onClick={handleLogout}>
-                                <LogOut className="mr-2 h-4 w-4" />
-                                Sign Out
-                            </Button>
-                        </div>
-                        <Separator />
-                        <div className="flex items-center justify-between">
-                            <div className="space-y-0.5">
-                                <Label>Delete Account</Label>
-                                <p className="text-sm text-muted-foreground">Permanently delete your account and all associated data.</p>
+                            <CardDescription>
+                                Actions that cannot be undone.
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-6">
+                            <div className="flex items-center justify-between">
+                                <div className="space-y-0.5">
+                                    <Label>Sign Out</Label>
+                                    <p className="text-sm text-muted-foreground">Logout of your current session.</p>
+                                </div>
+                                <Button variant="outline" onClick={handleLogout}>
+                                    <LogOut className="mr-2 h-4 w-4" />
+                                    Sign Out
+                                </Button>
                             </div>
-                            <Button variant="destructive" disabled>
-                                Delete Account
-                            </Button>
-                        </div>
-                    </CardContent>
-                </Card>
+                            <Separator />
+                            <div className="flex items-center justify-between">
+                                <div className="space-y-0.5">
+                                    <Label>Delete Account</Label>
+                                    <p className="text-sm text-muted-foreground">Permanently delete your account and all associated data.</p>
+                                </div>
+                                <Button variant="destructive" disabled>
+                                    Delete Account
+                                </Button>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </div>
             </div>
         </div>
     );

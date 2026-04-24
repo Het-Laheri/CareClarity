@@ -1,4 +1,5 @@
 import type { NextConfig } from 'next';
+import path from 'path';
 
 const nextConfig: NextConfig = {
   images: {
@@ -23,14 +24,13 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
-    // Limit image sizes for faster loading
     deviceSizes: [640, 750, 828, 1080, 1200],
     imageSizes: [16, 32, 48, 64, 96, 128, 256],
     formats: ['image/webp', 'image/avif'],
   },
-  // Enable gzip compression
+  outputFileTracingRoot: path.join(__dirname),
   compress: true,
-  // Optimize package imports
+  // Merged experimental block
   experimental: {
     optimizePackageImports: [
       'lucide-react',
@@ -40,9 +40,7 @@ const nextConfig: NextConfig = {
       '@radix-ui/react-select',
     ],
   },
-  // Production source maps off for smaller bundles
   productionBrowserSourceMaps: false,
-  // Security headers
   async headers() {
     return [
       {
@@ -54,7 +52,6 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        // Cache static assets aggressively
         source: '/(.*)\\.(js|css|woff2|woff|ttf|ico|png|jpg|jpeg|svg|webp|avif)',
         headers: [
           { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },

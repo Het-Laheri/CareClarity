@@ -62,7 +62,8 @@ export default function ProfilePage() {
 
   if (loading) {
     return (
-      <div className="flex flex-col gap-6 p-4 md:p-6">
+      <div className="flex-1 overflow-y-auto">
+      <div className="flex flex-col gap-6 p-4 md:p-6 w-full">
         <div>
           <Skeleton className="h-8 w-48" />
           <Skeleton className="mt-2 h-4 w-72" />
@@ -72,17 +73,19 @@ export default function ProfilePage() {
           <Skeleton className="h-80" />
         </div>
       </div>
+      </div>
     );
   }
 
   return (
-    <div className="flex flex-col gap-6 p-4 md:p-6">
+    <div className="flex-1 overflow-y-auto">
+    <div className="flex flex-col gap-6 p-4 md:p-6 w-full">
       <div>
         <h1 className="font-headline text-2xl sm:text-3xl font-bold tracking-tight">Profile Management</h1>
         <p className="text-sm sm:text-base text-muted-foreground">Manage your account and child&apos;s information.</p>
       </div>
 
-      <div className="grid gap-4 sm:gap-6 md:grid-cols-2">
+      <div className="grid gap-4 sm:gap-6 md:grid-cols-2 items-start">
         <Card>
           <CardHeader className="pb-3 sm:pb-6">
             <CardTitle className="font-headline text-lg sm:text-xl">Your Information</CardTitle>
@@ -142,6 +145,7 @@ export default function ProfilePage() {
           </CardContent>
         </Card>
       </div>
+    </div>
     </div>
   );
 }

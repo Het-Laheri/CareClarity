@@ -19,7 +19,8 @@ export async function GET(req: NextRequest) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    // Try Firestore first, fallback to in-memory
+    // Combine results from Firestore and in-memory store
+    let firestoreAppointments: any[] = [];
     try {
         const db = getDb();
         const snapshot = await db.collection('appointments')
@@ -27,17 +28,25 @@ export async function GET(req: NextRequest) {
             .orderBy('createdAt', 'desc')
             .get();
 
-        const appointments = snapshot.docs.map(doc => ({
+        firestoreAppointments = snapshot.docs.map(doc => ({
             id: doc.id,
             ...doc.data(),
         }));
-
-        return NextResponse.json(appointments);
     } catch (error) {
-        console.warn('Firestore unavailable for GET appointments, using in-memory store:', (error as Error).message);
-        const appointments = memGetAppointments(user.uid);
-        return NextResponse.json(appointments);
+        console.warn('Firestore unavailable for GET appointments:', (error as Error).message);
     }
+
+    const memoryAppointments = memGetAppointments(user.uid);
+    
+    // Merge and sort by createdAt
+    const allAppointments = [...firestoreAppointments, ...memoryAppointments];
+    allAppointments.sort((a, b) => {
+        const dateA = a.createdAt?.toDate ? a.createdAt.toDate() : new Date(a.createdAt);
+        const dateB = b.createdAt?.toDate ? b.createdAt.toDate() : new Date(b.createdAt);
+        return dateB.getTime() - dateA.getTime();
+    });
+
+    return NextResponse.json(allAppointments);
 }
 
 export async function POST(req: NextRequest) {
