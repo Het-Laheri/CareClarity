@@ -3,6 +3,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import Image from "next/image";
 import Link from "next/link";
+import { Doctor } from "@/lib/doctors";
 import { placeHolderImages } from "@/lib/placeholder-images";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
