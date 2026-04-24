@@ -1,9 +1,75 @@
+// src/lib/doctors.ts
 
-export const doctors = [
-  { id: 'doc1', name: 'Dr. Priya Sharma', specialization: 'Pediatric Neurology', location: 'Mumbai, Maharashtra', online: true, imageId: 'doctor-1', bio: 'Dr. Sharma is a renowned pediatric neurologist at Hinduja Hospital with over 18 years of experience in developmental disorders, epilepsy, and neurodevelopmental conditions. She is known for her compassionate, family-centered approach and is a member of the Indian Academy of Neurology.' },
-  { id: 'doc2', name: 'Dr. Rajesh Menon', specialization: 'Developmental-Behavioral Pediatrics', location: 'Bangalore, Karnataka', online: false, imageId: 'doctor-2', bio: 'Dr. Menon is a developmental pediatrician at NIMHANS, Bangalore. He specializes in ADHD, learning disabilities, and autism spectrum disorders. He works closely with schools and families across India to create comprehensive support and inclusion plans.' },
-  { id: 'doc3', name: 'Dr. Ananya Gupta', specialization: 'Child Psychiatry', location: 'New Delhi, Delhi', online: true, imageId: 'doctor-3', bio: 'Dr. Gupta is a child and adolescent psychiatrist practicing at AIIMS, New Delhi. She helps children and families navigate emotional and behavioral challenges, with a special interest in anxiety and mood disorders in children with neurodevelopmental conditions.' },
-  { id: 'doc4', name: 'Dr. Kavitha Nair', specialization: 'Occupational Therapy', location: 'Chennai, Tamil Nadu', online: true, imageId: 'doctor-4', bio: 'Dr. Nair is a senior occupational therapist at CMC Vellore. She specializes in sensory integration therapy, fine motor skill development, and play-based therapy for children with ASD and developmental delays.' },
-  { id: 'doc5', name: 'Dr. Arjun Patel', specialization: 'Speech-Language Pathology', location: 'Ahmedabad, Gujarat', online: false, imageId: 'doctor-5', bio: 'Dr. Patel is a certified speech-language pathologist specializing in communication disorders in children, including apraxia of speech and language delays. He uses AAC methods and is affiliated with the Indian Speech and Hearing Association (ISHA).' },
-  { id: 'doc6', name: 'Dr. Sneha Reddy', specialization: 'Applied Behavior Analysis (ABA)', location: 'Hyderabad, Telangana', online: true, imageId: 'doctor-6', bio: 'Dr. Reddy is a Board Certified Behavior Analyst (BCBA) who designs and oversees ABA therapy programs at her clinic in Hyderabad. She helps children with ASD develop new skills, improve communication, and manage challenging behaviors.' },
+/**
+ * Interface representing a doctor profile within the system.
+ * Exporting this allows it to be imported in components like the Discover page.
+ */
+export interface Doctor {
+  id: string;
+  name: string;
+  specialization: string;
+  location: string;
+  online: boolean;
+  imageId: string;
+  bio: string;
+}
+
+/**
+ * A typed array of doctor objects used across the application.
+ */
+export const doctors: Doctor[] = [
+  {
+    id: 'doc1',
+    name: 'Dr. Priya Sharma',
+    specialization: 'Pediatric Neurology',
+    location: 'Mumbai, Maharashtra',
+    online: true,
+    imageId: 'doctor-1',
+    bio: 'Dr. Sharma is a renowned pediatric neurologist at Hinduja Hospital with over 18 years of experience in developmental disorders, epilepsy, and neurodevelopmental conditions. She is known for her compassionate, family-centered approach and is a member of the Indian Academy of Neurology.'
+  },
+  {
+    id: 'doc2',
+    name: 'Dr. Rajesh Menon',
+    specialization: 'Developmental-Behavioral Pediatrics',
+    location: 'Bangalore, Karnataka',
+    online: false,
+    imageId: 'doctor-2',
+    bio: 'Dr. Menon is a developmental pediatrician at NIMHANS, Bangalore. He specializes in ADHD, learning disabilities, and autism spectrum disorders. He works closely with schools and families across India to create comprehensive support and inclusion plans.'
+  },
+  {
+    id: 'doc3',
+    name: 'Dr. Ananya Gupta',
+    specialization: 'Child Psychiatry',
+    location: 'New Delhi, Delhi',
+    online: true,
+    imageId: 'doctor-3',
+    bio: 'Dr. Gupta is a child and adolescent psychiatrist practicing at AIIMS, New Delhi. She helps children and families navigate emotional and behavioral challenges, with a special interest in anxiety and mood disorders in children with neurodevelopmental conditions.'
+  },
+  {
+    id: 'doc4',
+    name: 'Dr. Kavitha Nair',
+    specialization: 'Occupational Therapy',
+    location: 'Chennai, Tamil Nadu',
+    online: true,
+    imageId: 'doctor-4',
+    bio: 'Dr. Nair is a senior occupational therapist at CMC Vellore. She specializes in sensory integration therapy, fine motor skill development, and play-based therapy for children with ASD and developmental delays.'
+  },
+  {
+    id: 'doc5',
+    name: 'Dr. Arjun Patel',
+    specialization: 'Speech-Language Pathology',
+    location: 'Ahmedabad, Gujarat',
+    online: false,
+    imageId: 'doctor-5',
+    bio: 'Dr. Patel is a certified speech-language pathologist specializing in communication disorders in children, including apraxia of speech and language delays. He uses AAC methods and is affiliated with the Indian Speech and Hearing Association (ISHA).'
+  },
+  {
+    id: 'doc6',
+    name: 'Dr. Sneha Reddy',
+    specialization: 'Applied Behavior Analysis (ABA)',
+    location: 'Hyderabad, Telangana',
+    online: true,
+    imageId: 'doctor-6',
+    bio: 'Dr. Reddy is a Board Certified Behavior Analyst (BCBA) who designs and oversees ABA therapy programs at her clinic in Hyderabad. She helps children with ASD develop new skills, improve communication, and manage challenging behaviors.'
+  },
 ];
