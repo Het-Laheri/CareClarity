@@ -9,17 +9,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { CheckCircle, Search, Video, X } from "lucide-react";
+import { CheckCircle, Search, Video, X, Filter } from "lucide-react";
 
-interface Doctor {
-  id: string;
-  name: string;
-  specialization: string;
-  location: string;
-  online: boolean;
-  imageId: string;
-  bio: string;
-}
+// ... Interface (same as yours)
 
 export default function DiscoverPage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -34,8 +26,8 @@ export default function DiscoverPage() {
   }, []);
 
   const filteredDoctors = useMemo(() => {
-    if (!searchQuery.trim()) return doctors;
-    const query = searchQuery.toLowerCase();
+    const query = searchQuery.toLowerCase().trim();
+    if (!query) return doctors;
     return doctors.filter(
       (doctor) =>
         doctor.name.toLowerCase().includes(query) ||
@@ -44,100 +36,138 @@ export default function DiscoverPage() {
     );
   }, [searchQuery, doctors]);
 
+  // Loading State
   if (loading) {
     return (
-      <div className="flex-1 overflow-y-auto">
-      <div className="flex flex-col gap-6 p-4 md:p-6 w-full">
-        <div>
-          <Skeleton className="h-8 w-48" />
-          <Skeleton className="mt-2 h-4 w-64" />
-        </div>
-        <Skeleton className="h-12 rounded-lg" />
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {[1, 2, 3].map((i) => <Skeleton key={i} className="h-72 rounded-lg" />)}
-        </div>
+      <div className="flex-1 overflow-y-auto bg-slate-50/50">
+        <div className="max-w-7xl mx-auto p-6 space-y-6">
+          <Skeleton className="h-10 w-64" />
+          <Skeleton className="h-12 w-full rounded-xl" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3, 4, 5, 6].map((i) => <Skeleton key={i} className="h-[350px] rounded-xl" />)}
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="flex-1 overflow-y-auto">
-    <div className="flex flex-col gap-6 p-4 md:p-6 w-full">
-      <div>
-        <h1 className="font-headline text-2xl sm:text-3xl font-bold tracking-tight">Discover Doctors</h1>
-        <p className="text-sm sm:text-base text-muted-foreground">Find specialists tailored to your needs.</p>
-      </div>
+    /* MAIN CONTAINER: flex-1 and overflow-y-auto is correct */
+    <div className="flex-1 overflow-y-auto bg-slate-50/30">
 
-      <div className="rounded-lg border bg-card p-3 sm:p-4">
-        <div className="flex flex-col gap-3 sm:flex-row">
-          <div className="relative flex-grow">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground" />
+      {/* CONTENT WRAPPER: Center and constrain width */}
+      <div className="max-w-7xl mx-auto p-4 md:p-8 space-y-8">
+
+        {/* Header Section */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <h1 className="font-headline text-3xl font-bold tracking-tight text-slate-900">Discover Doctors</h1>
+            <p className="text-muted-foreground mt-1 text-lg">Specialized care for your child's unique journey.</p>
+          </div>
+          <Badge variant="outline" className="w-fit h-fit px-3 py-1 text-primary border-primary/20 bg-primary/5">
+            {filteredDoctors.length} Specialists Available
+          </Badge>
+        </div>
+
+        {/* Search & Filter Bar */}
+        <div className="sticky top-0 z-10 -mx-4 px-4 py-2 bg-slate-50/80 backdrop-blur-md md:mx-0 md:px-0 md:bg-transparent">
+          <div className="relative group">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
             <Input
-              placeholder="Search by name, specialty, or location..."
-              className="pl-9 sm:pl-10 text-sm"
+              placeholder="Search by name, specialty, or location (e.g. Mumbai, Neurology)..."
+              className="pl-12 h-14 text-base rounded-2xl shadow-sm border-slate-200 focus-visible:ring-primary focus-visible:ring-offset-0 bg-white"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
+            {searchQuery && (
+              <Button
+                variant="ghost"
+                size="icon"
+                className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full"
+                onClick={() => setSearchQuery('')}
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            )}
           </div>
-          {searchQuery && (
-            <Button variant="ghost" size="sm" onClick={() => setSearchQuery('')}>
-              <X className="mr-1 h-4 w-4" /> Clear
-            </Button>
-          )}
         </div>
-      </div>
 
-      {filteredDoctors.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-12 text-center">
-          <Search className="h-10 w-10 sm:h-12 sm:w-12 text-muted-foreground/50" />
-          <h3 className="mt-4 font-headline text-base sm:text-lg font-semibold">No doctors found</h3>
-          <p className="mt-2 text-xs sm:text-sm text-muted-foreground">Try adjusting your search terms.</p>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredDoctors.map((doctor) => {
-            const image = placeHolderImages.find((p) => p.id === doctor.imageId);
-            return (
-              <Card key={doctor.id} className="overflow-hidden transition-shadow hover:shadow-lg">
-                <CardHeader className="p-0">
-                  {image && (
-                    <Image
-                      src={image.imageUrl}
-                      alt={doctor.name}
-                      width={400}
-                      height={300}
-                      className="h-36 sm:h-48 w-full object-cover"
-                      data-ai-hint={image.imageHint}
-                      loading="lazy"
-                      unoptimized
-                    />
-                  )}
-                </CardHeader>
-                <CardContent className="p-3 sm:p-4">
-                  <CardTitle className="font-headline text-base sm:text-lg">{doctor.name}</CardTitle>
-                  <p className="text-xs sm:text-sm text-primary">{doctor.specialization}</p>
-                  <p className="mt-1 text-xs sm:text-sm text-muted-foreground">{doctor.location}</p>
-                  <div className="mt-3 flex flex-wrap gap-1.5">
-                    <Badge variant="secondary" className="flex items-center gap-1 text-xs">
-                      <CheckCircle className="h-3 w-3 text-green-500" /> Verified
-                    </Badge>
-                    {doctor.online && (
-                      <Badge variant="secondary" className="flex items-center gap-1 bg-accent/50 text-accent-foreground text-xs">
-                        <Video className="h-3 w-3" /> Online
-                      </Badge>
+        {/* Results Grid */}
+        {filteredDoctors.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-24 text-center bg-white rounded-3xl border border-dashed">
+            <div className="p-4 bg-slate-100 rounded-full mb-4">
+              <Search className="h-10 w-10 text-slate-400" />
+            </div>
+            <h3 className="text-xl font-semibold text-slate-900">No specialists match your search</h3>
+            <p className="text-muted-foreground mt-2 max-w-xs mx-auto">Try searching for a city, a specific diagnosis, or check your spelling.</p>
+            <Button variant="outline" className="mt-6 rounded-full" onClick={() => setSearchQuery('')}>
+              View all doctors
+            </Button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {filteredDoctors.map((doctor) => {
+              const image = placeHolderImages.find((p) => p.id === doctor.imageId);
+              return (
+                <Card key={doctor.id} className="group overflow-hidden border-slate-200 hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col rounded-2xl bg-white">
+                  <div className="relative h-48 w-full overflow-hidden">
+                    {image && (
+                      <Image
+                        src={image.imageUrl}
+                        alt={doctor.name}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                        unoptimized
+                      />
                     )}
+                    <div className="absolute top-3 right-3">
+                      {doctor.online && (
+                        <Badge className="bg-emerald-500 hover:bg-emerald-600 border-none flex gap-1 items-center px-2 py-1">
+                          <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
+                          Online
+                        </Badge>
+                      )}
+                    </div>
                   </div>
-                  <Button className="mt-3 w-full" size="sm" asChild>
-                    <Link href={`/dashboard/discover/${doctor.id}`}>View Profile</Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
-      )}
-    </div>
+
+                  <CardContent className="p-5 flex-1 flex flex-col">
+                    <div className="mb-3">
+                      <CardTitle className="text-xl font-bold group-hover:text-primary transition-colors">
+                        {doctor.name}
+                      </CardTitle>
+                      <p className="text-sm font-medium text-primary uppercase tracking-wider mt-1">
+                        {doctor.specialization}
+                      </p>
+                    </div>
+
+                    <p className="text-sm text-muted-foreground flex items-center gap-1.5 mb-4">
+                      <span className="text-slate-400">📍</span> {doctor.location}
+                    </p>
+
+                    <div className="mt-auto space-y-4">
+                      <div className="flex flex-wrap gap-2">
+                        <Badge variant="secondary" className="bg-slate-100 text-slate-700 font-normal border-none">
+                          <CheckCircle className="mr-1 h-3 w-3 text-blue-500" /> Verified
+                        </Badge>
+                        {doctor.online && (
+                          <Badge variant="secondary" className="bg-blue-50 text-blue-700 font-normal border-none">
+                            <Video className="mr-1 h-3 w-3" /> Telehealth
+                          </Badge>
+                        )}
+                      </div>
+
+                      <Button className="w-full rounded-xl h-11 font-semibold group-hover:shadow-md transition-all" asChild>
+                        <Link href={`/dashboard/discover/${doctor.id}`}>View Full Profile</Link>
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -52,8 +52,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="font-body antialiased">
+    <html lang="en" suppressHydrationWarning className="h-full">
+      {/* ADDED: h-screen, overflow-hidden, and flex flex-col to enable internal scrolling */}
+      <body className="font-body antialiased h-screen overflow-hidden flex flex-col">
         <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground">
           Skip to content
         </a>
@@ -62,7 +63,10 @@ export default function RootLayout({
             <ReactQueryProvider>
               <DoctorJsonLd />
               <OrganizationJsonLd />
-              {children}
+              {/* Wrapped children in a flex container to ensure it fills the height */}
+              <div id="main-content" className="flex-1 flex flex-col min-h-0 overflow-hidden">
+                {children}
+              </div>
             </ReactQueryProvider>
             <Toaster />
           </FirebaseClientProvider>

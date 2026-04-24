@@ -38,8 +38,8 @@ export default function DoctorProfilePage() {
 
   if (loading) {
     return (
-      <div className="flex-1 overflow-y-auto">
-        <div className="w-full space-y-4 p-4 md:p-6">
+      <div className="w-full h-full overflow-y-auto">
+        <div className="max-w-5xl mx-auto space-y-4 p-4 md:p-6">
           <Skeleton className="h-48 sm:h-64 w-full rounded-lg" />
           <Skeleton className="h-8 w-48" />
           <Skeleton className="h-4 w-32" />
@@ -60,8 +60,8 @@ export default function DoctorProfilePage() {
   const image = placeHolderImages.find((p) => p.id === doctor.imageId);
 
   return (
-    <div className="flex-1 overflow-y-auto">
-      <div className="w-full space-y-4 sm:space-y-6 p-4 md:p-6">
+    <div className="w-full h-full overflow-y-auto">
+      <div className="max-w-5xl mx-auto space-y-4 sm:space-y-6 p-4 md:p-6 pb-12">
         <Card className="overflow-hidden">
           {image && (
             <div className="relative h-40 w-full sm:h-48 md:h-64">
