@@ -13,7 +13,7 @@ export default function Header() {
           <div className="bg-primary/10 p-1.5 rounded-lg">
             <Sparkles className="h-5 w-5 text-primary" />
           </div>
-          <h2 className="font-headline font-semibold text-lg tracking-tight hidden sm:block">CareClarity AI</h2>
+          <h3 className="font-headline font-semibold text-lg tracking-tight hidden sm:block">CareClarity AI</h3>
         </div>
       </div>
       <div className="flex w-full items-center justify-end gap-2">
