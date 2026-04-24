@@ -62,7 +62,7 @@ export default function DiscoverPage() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <h1 className="font-headline text-3xl font-bold tracking-tight text-slate-900">Discover Doctors</h1>
-            <p className="text-muted-foreground mt-1 text-lg">Specialized care for your child's unique journey.</p>
+            <p className="text-muted-foreground mt-1 text-lg">Specialized care for your child&apos;s unique journey.</p>
           </div>
           <Badge variant="outline" className="w-fit h-fit px-3 py-1 text-primary border-primary/20 bg-primary/5">
             {filteredDoctors.length} Specialists Available
