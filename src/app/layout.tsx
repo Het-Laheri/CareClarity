@@ -64,7 +64,7 @@ export default function RootLayout({
               <DoctorJsonLd />
               <OrganizationJsonLd />
               {/* Wrapped children in a flex container to ensure it fills the height */}
-              <div id="main-content" className="flex-1 flex flex-col min-h-0 overflow-hidden">
+              <div id="main-content" className="flex-1 flex flex-col min-h-0 overflow-y-auto">
                 {children}
               </div>
             </ReactQueryProvider>
