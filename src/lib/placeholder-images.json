@@ -27,37 +27,37 @@
     {
       "id": "doctor-1",
       "description": "Portrait of a friendly female doctor",
-      "imageUrl": "https://placehold.co/400x300/6366f1/ffffff?text=Dr.+Priya",
+      "imageUrl": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&h=400&fit=crop&auto=format",
       "imageHint": "doctor portrait"
     },
     {
       "id": "doctor-2",
       "description": "Portrait of a smiling male doctor",
-      "imageUrl": "https://placehold.co/400x300/f43f5e/ffffff?text=Dr.+Rajesh",
+      "imageUrl": "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&h=400&fit=crop&auto=format",
       "imageHint": "doctor portrait"
     },
     {
       "id": "doctor-3",
       "description": "Portrait of a professional doctor",
-      "imageUrl": "https://placehold.co/400x300/8b5cf6/ffffff?text=Dr.+Ananya",
+      "imageUrl": "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&h=400&fit=crop&auto=format",
       "imageHint": "doctor professional"
     },
     {
       "id": "doctor-4",
       "description": "Portrait of a female therapist",
-      "imageUrl": "https://placehold.co/400x300/06b6d4/ffffff?text=Dr.+Kavitha",
+      "imageUrl": "https://images.unsplash.com/photo-1527613426441-4da17471b66d?w=600&h=400&fit=crop&auto=format",
       "imageHint": "therapist portrait"
     },
     {
       "id": "doctor-5",
       "description": "Portrait of a male pediatrician",
-      "imageUrl": "https://placehold.co/400x300/10b981/ffffff?text=Dr.+Arjun",
+      "imageUrl": "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=600&h=400&fit=crop&auto=format",
       "imageHint": "pediatrician portrait"
     },
     {
       "id": "doctor-6",
       "description": "Portrait of a compassionate female specialist",
-      "imageUrl": "https://placehold.co/400x300/ec4899/ffffff?text=Dr.+Sneha",
+      "imageUrl": "https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=600&h=400&fit=crop&auto=format",
       "imageHint": "doctor woman"
     }
   ]

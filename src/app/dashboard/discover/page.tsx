@@ -61,7 +61,7 @@ export default function DiscoverPage() {
 
       {/* ── Hero / Header Strip — matches landing page style ── */}
       <div className="bg-gradient-to-b from-blue-50/60 to-white border-b border-slate-100">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
 
           {/* Trust pill */}
           <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50/60 px-4 py-1.5 text-sm font-semibold text-blue-800 mb-5 shadow-sm">
@@ -106,7 +106,7 @@ export default function DiscoverPage() {
       </div>
 
       {/* ── Results Grid ── */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-12">
 
         {filteredDoctors.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-24 text-center bg-slate-50 rounded-3xl border border-dashed border-slate-200">
